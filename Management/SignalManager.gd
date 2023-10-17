@@ -18,7 +18,10 @@ signal player_killed(body)
 signal died
 
 #OBSTACLES
+signal push(body)
 signal laser_received(body)
+
+signal moved
 
 signal barrier_open
 signal barrier_close

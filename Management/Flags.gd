@@ -1,5 +1,8 @@
 extends Node
 
+var tile_size = 16
+var anim_speed = 0.07
+
 var saved_level = "res://Maps/Test/TestMap1.tscn"
 var exit_id
 var target_exit_id

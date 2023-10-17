@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1e64is7b7278"]
+[gd_scene load_steps=12 format=3 uid="uid://bw0vjibq2cha1"]
 
-[ext_resource type="Texture2D" uid="uid://dw5p8lp2xjnj0" path="res://assets/iceblock.png" id="1_0jj3e"]
-[ext_resource type="Script" path="res://IceBlock.gd" id="1_0oiom"]
+[ext_resource type="Script" path="res://Objects/IceBlock.gd" id="1_aoxkp"]
+[ext_resource type="Texture2D" uid="uid://dw5p8lp2xjnj0" path="res://assets/iceblock.png" id="2_88hcb"]
+[ext_resource type="Texture2D" uid="uid://b2cfjo54o1r4b" path="res://assets/orb.png" id="3_fim1e"]
 
-[sub_resource type="Animation" id="Animation_hik60"]
-resource_name = "Stop"
+[sub_resource type="Animation" id="Animation_yjlfi"]
+resource_name = "Down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,7 +16,22 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_m5wfj"]
+resource_name = "Left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_fcifn"]
@@ -48,6 +64,21 @@ tracks/0/keys = {
 "values": [2]
 }
 
+[sub_resource type="Animation" id="Animation_hik60"]
+resource_name = "Stop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_cl21f"]
 resource_name = "Up"
 tracks/0/type = "value"
@@ -63,36 +94,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_m5wfj"]
-resource_name = "Left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_yjlfi"]
-resource_name = "Down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_maj88"]
 _data = {
 "Down": SubResource("Animation_yjlfi"),
@@ -104,14 +105,16 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88qst"]
-size = Vector2(16, 16)
+size = Vector2(14, 14)
 
 [node name="IceBlock" type="Area2D"]
-script = ExtResource("1_0oiom")
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_aoxkp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)
-texture = ExtResource("1_0jj3e")
+texture = ExtResource("2_88hcb")
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -122,3 +125,14 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_88qst")
+
+[node name="rayLongSprite2" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-8, -8)
+texture = ExtResource("3_fim1e")
+centered = false
+hframes = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+collision_mask = 2
+collide_with_areas = true

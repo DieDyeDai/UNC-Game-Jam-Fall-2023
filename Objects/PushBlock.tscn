@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvh7lnaiaue2d"]
+
+[ext_resource type="Script" path="res://Objects/PushBlock.gd" id="1_oiwp0"]
+[ext_resource type="Texture2D" uid="uid://co01ypwuje2in" path="res://assets/pushblock.png" id="1_ycd4b"]
+[ext_resource type="Texture2D" uid="uid://b2cfjo54o1r4b" path="res://assets/orb.png" id="3_7ir4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykp3r"]
+size = Vector2(14, 14)
+
+[node name="PushBlock" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_oiwp0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_ycd4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_ykp3r")
+
+[node name="rayLongSprite2" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-8, -8)
+texture = ExtResource("3_7ir4g")
+centered = false
+hframes = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+collision_mask = 2
+collide_with_areas = true
