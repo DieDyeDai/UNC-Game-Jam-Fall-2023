@@ -31,7 +31,7 @@ script = ExtResource("4_xgov3")
 orig_area = "Test"
 orig_scene = "TestMap1"
 target_area = "Test"
-target_scene = "TestMap3"
+target_scene = "TestMap2"
 exit_id = "Exit1"
 target_exit_id = "Exit1"
 metadata/_edit_group_ = true
@@ -41,6 +41,42 @@ shape = SubResource("RectangleShape2D_33cxb")
 
 [node name="SpawnPosition" type="Node2D" parent="Exits/Exit1"]
 position = Vector2(-72, 104)
+
+[node name="RESET" type="Area2D" parent="Exits"]
+position = Vector2(96, -8)
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("4_xgov3")
+orig_area = "Test"
+orig_scene = "TestMap1"
+target_area = "Test"
+target_scene = "TestMap1"
+exit_id = "RESET"
+target_exit_id = "default"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/RESET"]
+shape = SubResource("RectangleShape2D_33cxb")
+
+[node name="SpawnPosition" type="Node2D" parent="Exits/RESET"]
+
+[node name="default" type="Area2D" parent="Exits"]
+position = Vector2(-64, 16)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_xgov3")
+orig_area = "Test"
+orig_scene = "TestMap1"
+target_area = "Test"
+target_scene = "TestMap1"
+exit_id = "default"
+target_exit_id = "default"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/default"]
+shape = SubResource("RectangleShape2D_33cxb")
+
+[node name="SpawnPosition" type="Node2D" parent="Exits/default"]
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -53,3 +89,5 @@ position = Vector2(-32, -48)
 position = Vector2(32, -16)
 
 [connection signal="area_entered" from="Exits/Exit1" to="Exits/Exit1" method="_on_area_entered"]
+[connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]
+[connection signal="area_entered" from="Exits/default" to="Exits/default" method="_on_area_entered"]

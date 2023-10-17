@@ -94,3 +94,7 @@ func cleanup(): #called instead of queue_free()
 func emit_level_changed_signal(orig_area, orig_scene, target_area, target_scene, exit_id, target_exit_id):
 	print("level changed emitted")
 	emit_signal("level_changed", orig_area, orig_scene, target_area, target_scene, exit_id, target_exit_id)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("reset"):
+		get_node("Exits").get_node("RESET").global_position = player.global_position

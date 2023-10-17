@@ -23,6 +23,7 @@ var just_pushed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Pushable")
+	add_to_group("Ice")
 	animationPlayer.play("Stop")
 	
 	pass # Replace with function body.
