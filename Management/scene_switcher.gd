@@ -38,6 +38,8 @@ func _ready():
 		connect_player_to_enable_disable_signals(current_player)
 		current_player.enable_input.emit()
 		print("sending enable input")
+		
+	camera.set_zoom(Vector2(current_scene.zoom, current_scene.zoom))
 	
 	animation_player.play("fade_in")
 

@@ -23,11 +23,15 @@ var enabled = false
 
 var is_dead : bool = false
 
-@onready var ray = $RayCast2d
+@onready var ray = $RayCast2D
 @onready var rayLong = $RayCast2DLong
 
+@onready var sprite2D = $Sprite2D
 @onready var testCollision = $rayLongSprite2
+@onready var collisionShape2D = $CollisionShape2D
 @onready var movingDisplay = $MovingDisplay
+
+@onready var exitDetector = $ExitDetector
 #@onready var rayLongDisplay = $rayLongSprite
 
 func _ready():
@@ -87,22 +91,41 @@ func on_checked_push_direction(body, direction, can_be_pushed):
 		move_direct(direction)
 
 func move(dir : String):
-	emit_signal("input_made")
+	enabled = false
+	
+	position += inputs[dir] * Flags.tile_size
+	
+	var entering_portal = 1.0 # false
+	exitDetector.force_raycast_update()
+	if exitDetector.is_colliding():
+		entering_portal = 5.0
+	print(entering_portal)
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + inputs[dir] * Flags.tile_size, Flags.anim_speed).set_trans(Tween.TRANS_LINEAR)
-	var tweenCollision = get_tree().create_tween()
-	tweenCollision.tween_property(testCollision, "global_position", self.global_position+inputs[dir]*Flags.tile_size, Flags.anim_speed).from(self.global_position+inputs[dir]*Flags.tile_size)
+	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed * entering_portal).from(Vector2(8,8) + inputs[dir] * Flags.tile_size * -1)
+	#position += inputs[dir] * Flags.tile_size
+	#var tweenCollision = get_tree().create_tween()
+	#collisionShape2D.global_position = global_position + inputs[dir]*Flags.tile_size
+	#tweenCollision.tween_property(collisionShape2D, "global_position", self.global_position+inputs[dir]*Flags.tile_size+Vector2(8,8), Flags.anim_speed).from(self.global_position+inputs[dir]*Flags.tile_size+Vector2(8,8))
+	emit_signal("input_made")
 	moving = true
+	print(entering_portal)
 	await tween.finished
 	moving = false
 	
 
 func move_direct(dir : Vector2):
-	emit_signal("input_made")
+	enabled = false
+	
+	position += dir
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_SINE)
-	var tweenCollision = get_tree().create_tween()
-	tweenCollision.tween_property(testCollision, "global_position", self.global_position+dir, Flags.anim_speed).from(self.global_position+dir)
+	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed).from(Vector2(8,8) + dir * -1)
+	
+	#var tween = get_tree().create_tween()
+	#tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_SINE)
+	#var tweenCollision = get_tree().create_tween()
+	#collisionShape2D.global_position = global_position + dir
+	#tweenCollision.tween_property(collisionShape2D, "global_position", self.global_position+dir+Vector2(8,8), Flags.anim_speed).from(self.global_position+dir+Vector2(8,8))
+	emit_signal("input_made")
 	moving = true
 	await tween.finished
 	moving = false
@@ -115,3 +138,6 @@ func on_enable_input():
 func on_disable_input():
 	enabled = false
 	print("disabling input")
+	
+func on_done_processing():
+	enabled = true

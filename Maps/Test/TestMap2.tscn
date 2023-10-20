@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7r5khbiuqcbt"]
+[gd_scene load_steps=11 format=3 uid="uid://c7r5khbiuqcbt"]
 
 [ext_resource type="Script" path="res://Management/Level.gd" id="1_jx6gb"]
 [ext_resource type="TileSet" uid="uid://bqmj2hikdbihp" path="res://Maps/Test/TileSet.tres" id="2_i1ok1"]
 [ext_resource type="PackedScene" uid="uid://b0wysm6c2nqgj" path="res://player.tscn" id="3_tkwag"]
+[ext_resource type="PackedScene" uid="uid://mh3oua5r8tpy" path="res://Management/ExitPortalSprite.tscn" id="4_ci16u"]
 [ext_resource type="Script" path="res://Management/LoadingZone.gd" id="4_nqy7s"]
 [ext_resource type="PackedScene" uid="uid://bw0vjibq2cha1" path="res://Objects/IceBlock.tscn" id="5_wxcdy"]
 [ext_resource type="PackedScene" uid="uid://dvh7lnaiaue2d" path="res://Objects/PushBlock.tscn" id="6_xvhsr"]
@@ -17,7 +18,9 @@ size = Vector2(8, 8)
 size = Vector2(8, 8)
 
 [node name="Test" type="Node2D"]
+z_index = -2
 script = ExtResource("1_jx6gb")
+zoom = 2.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_i1ok1")
@@ -27,12 +30,15 @@ layer_0/tile_data = PackedInt32Array(0, 65537, 2, 1, 131073, 2, -65536, 196609, 
 [node name="Player" parent="." instance=ExtResource("3_tkwag")]
 position = Vector2(-64, 16)
 
+[node name="ExitPortalSprite" parent="." instance=ExtResource("4_ci16u")]
+position = Vector2(8, -88)
+
 [node name="Exits" type="Node2D" parent="."]
 
 [node name="Exit1" type="Area2D" parent="Exits"]
 position = Vector2(8, -88)
-collision_layer = 128
-collision_mask = 128
+collision_layer = 192
+collision_mask = 192
 script = ExtResource("4_nqy7s")
 orig_area = "Test"
 orig_scene = "TestMap3"
@@ -50,8 +56,8 @@ position = Vector2(40, 104)
 
 [node name="RESET" type="Area2D" parent="Exits"]
 position = Vector2(104, -96)
-collision_layer = 128
-collision_mask = 128
+collision_layer = 192
+collision_mask = 192
 script = ExtResource("4_nqy7s")
 orig_area = "Test"
 orig_scene = "TestMap2"

@@ -1,7 +1,22 @@
+
 extends Node
 
+"""
+Collision Layers:
+	Tiles: 1, 2
+	Player: 1, 2, 8
+		RayCast detects 2, RayCastLong detects 1, 2
+	Loading Zones: 7, 8
+	PushBlock, IceBlock: 1, 2
+		RayCast detects 2
+	so Button should be on layer 1
+	
+	and Portal and Player should be on layer 3?
+
+"""
+
 var tile_size = 16
-var anim_speed = 0.07
+var anim_speed = 0.08
 
 var saved_level = "res://Maps/Test/TestMap1.tscn"
 var exit_id

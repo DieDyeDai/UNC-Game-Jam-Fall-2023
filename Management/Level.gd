@@ -5,6 +5,7 @@ signal level_changed
 signal pushed(body: Object, direction: Vector2)
 
 signal process_interactions_signal(body: Object)
+signal done_processing
 
 @onready var exits = $Exits.get_children()
 @onready var player = $Player
@@ -27,6 +28,7 @@ func _ready():
 		scene_has_player = true
 		
 		player.connect("input_made", self.process_interactions)
+		self.connect("done_processing", player.on_done_processing)
 		
 		if spawn_positions.has(Flags.target_exit_id):
 			#player.global_position = entrances.get(Flags.exit_id)
@@ -42,6 +44,7 @@ func _ready():
 		if has_node("Objects"):
 			for i in get_node("Objects").get_children():
 				self.connect("process_interactions_signal", i.process_interactions)
+				self.connect("done_processing", i.on_done_processing)
 				if self.is_connected("process_interactions_signal", i.process_interactions):
 					print("process_interactions_signal connected")
 				else:
@@ -87,6 +90,12 @@ func push_object(pushed_body, direction: Vector2):
 func process_interactions():
 	for i in get_node("Objects").get_children():
 		emit_signal("process_interactions_signal", i)
+		await get_tree().create_timer(0.001).timeout
+	for i in get_node("Objects").get_children():
+		#await get_tree().create_timer(0.01).timeout
+		emit_signal("process_interactions_signal", i)
+	emit_signal("done_processing")
+	
 
 func cleanup(): #called instead of queue_free()
 	queue_free()
@@ -98,3 +107,6 @@ func emit_level_changed_signal(orig_area, orig_scene, target_area, target_scene,
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
 		get_node("Exits").get_node("RESET").global_position = player.global_position
+	elif Input.is_action_just_pressed("wait"):
+		print("---pass---")
+		process_interactions()

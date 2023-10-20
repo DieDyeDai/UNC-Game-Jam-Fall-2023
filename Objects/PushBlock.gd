@@ -7,6 +7,7 @@ signal checked_push_direction (body: Object, direction: Vector2, can_be_pushed: 
 
 @onready var rayCast2D = $RayCast2D
 @onready var collisionShape2D = $CollisionShape2D
+@onready var sprite2D = $Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,13 +29,18 @@ func on_push_confirmed(body, direction):
 		move(direction)
 
 func move(dir):
+	#var tween = get_tree().create_tween()
+	#var tweenCollision = get_tree().create_tween()
+	#tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_LINEAR)
+	#tweenCollision.tween_property(collisionShape2D, "global_position", global_position+dir+Vector2(8,8), Flags.anim_speed).from(global_position+dir+Vector2(8,8))
+	#await tween.finished
+	#await tweenCollision.finished
+	
+	position += dir
 	var tween = get_tree().create_tween()
-	var tweenCollision = get_tree().create_tween()
-	tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_LINEAR)
-	tweenCollision.tween_property(collisionShape2D, "global_position", global_position+dir, Flags.anim_speed).from(global_position+dir)
-	await tween.finished
-	await tweenCollision.finished
-	collisionShape2D.position = Vector2(8, 8)
+	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed).from(Vector2(8,8) + dir * -1)
+	
+	# collisionShape2D.position = Vector2(8, 8)
 	print("pushblock global position after move:" + str(collisionShape2D.global_position))
 	
 func check_movement(direction: Vector2) -> bool:
@@ -42,5 +48,8 @@ func check_movement(direction: Vector2) -> bool:
 	rayCast2D.force_raycast_update()
 	return !rayCast2D.is_colliding()
 
-func process_interactions(body):
+func process_interactions(_body):
+	pass
+
+func on_done_processing():
 	pass
