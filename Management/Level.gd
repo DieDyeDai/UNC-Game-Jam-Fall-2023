@@ -13,7 +13,7 @@ signal done_processing
 
 @export var spawn_positions : Dictionary = {}
 
-@export var zoom = 2.5
+@export var zoom = 2.0
 
 var scene_has_player : bool = false
 
@@ -117,6 +117,7 @@ func create_ghost(location: Vector2, direction: Vector2):
 func on_ghost_ready(body: Object):
 	body.stored_direction = ghost_stored_direction
 	body.position = ghost_stored_location
+	body.animationPlayer.play(body.directions[ghost_stored_direction])
 	self.connect("process_interactions_signal", body.process_interactions)
 	self.connect("done_processing", body.on_done_processing)
 	if self.is_connected("process_interactions_signal", body.process_interactions):
@@ -151,14 +152,17 @@ func process_interactions():
 	await get_tree().create_timer(0.001).timeout
 	for i in get_node("Ghosts").get_children():
 		emit_signal("process_interactions_signal", i)
-		await get_tree().create_timer(0.001).timeout
+		#await get_tree().create_timer(0.001).timeout
+	await get_tree().create_timer(0.001).timeout
 	for i in get_node("Objects").get_children():
 		emit_signal("process_interactions_signal", i)
-		await get_tree().create_timer(0.001).timeout
+		#await get_tree().create_timer(0.001).timeout
+	await get_tree().create_timer(0.001).timeout
 	for i in get_node("Objects").get_children():
 		#await get_tree().create_timer(0.01).timeout
 		emit_signal("process_interactions_signal", i)
 	#await get_tree().create_timer(0.03).timeout
+	await get_tree().create_timer(0.001).timeout
 	emit_signal("done_processing")
 
 

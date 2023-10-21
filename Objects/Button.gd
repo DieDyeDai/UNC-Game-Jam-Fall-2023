@@ -15,7 +15,7 @@ signal set_state (on : bool) # tell connected object if button is on or off
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	connected_object = get_parent().get_parent().get_node(connected_object_path)
+	connected_object = get_parent().get_parent().get_node("Doors").get_node(connected_object_path) # Door is only a 
 	
 	self.connect("set_state", connected_object.on_set_state)
 	

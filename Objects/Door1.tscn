@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c15aj6fam003g"]
+[gd_scene load_steps=14 format=3 uid="uid://cksuceo2m1s3u"]
 
-[ext_resource type="Script" path="res://Objects/Door2.gd" id="1_dok7q"]
-[ext_resource type="Texture2D" uid="uid://bw16ethqcdlo4" path="res://assets/door.png" id="2_6dw5j"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1blq"]
-size = Vector2(30, 14)
+[ext_resource type="Script" path="res://Objects/Door1.gd" id="1_yijiw"]
+[ext_resource type="Texture2D" uid="uid://cjnq3qjfyqi34" path="res://assets/door1.png" id="2_6mpwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qik5p"]
-size = Vector2(14, 30)
+size = Vector2(14, 14)
 
 [sub_resource type="Animation" id="Animation_h8cdc"]
 length = 0.001
@@ -157,26 +154,20 @@ _data = {
 "up_open": SubResource("Animation_u6fk7")
 }
 
-[node name="Door2" type="Area2D"]
+[node name="Door1" type="Area2D"]
 collision_layer = 771
 collision_mask = 771
-script = ExtResource("1_dok7q")
-
-[node name="CollisionShape2DHorizontal" type="CollisionShape2D" parent="."]
-position = Vector2(16, 8)
-shape = SubResource("RectangleShape2D_a1blq")
-disabled = true
-
-[node name="CollisionShape2DVertical" type="CollisionShape2D" parent="."]
-position = Vector2(8, 16)
-shape = SubResource("RectangleShape2D_qik5p")
-disabled = true
+script = ExtResource("1_yijiw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 3
-texture = ExtResource("2_6dw5j")
+texture = ExtResource("2_6mpwr")
 centered = false
 hframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_qik5p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

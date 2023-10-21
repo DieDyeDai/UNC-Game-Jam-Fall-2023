@@ -27,6 +27,7 @@ signal _on_ready(body: Object)
 @onready var ray = $RayCast2D
 @onready var rayLong = $RayCast2DLong
 @onready var collisionShape2D = $CollisionShape2D
+@onready var animationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
