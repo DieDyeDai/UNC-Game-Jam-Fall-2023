@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rgt3x480ypkp"]
+[gd_scene load_steps=15 format=3 uid="uid://rgt3x480ypkp"]
 
 [ext_resource type="Script" path="res://Management/Level.gd" id="1_segrh"]
 [ext_resource type="TileSet" uid="uid://bqmj2hikdbihp" path="res://Maps/Test/TileSet.tres" id="1_u3j8i"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cw3olap7ujge2" path="res://Objects/PressurePlate.tscn" id="9_bs7ya"]
 [ext_resource type="PackedScene" uid="uid://cupc27kw5xrhr" path="res://Objects/PortalGreen.tscn" id="11_xvccb"]
 [ext_resource type="PackedScene" uid="uid://cy5cq7fkh8hot" path="res://Objects/PortalRed.tscn" id="12_uxi3e"]
+[ext_resource type="PackedScene" uid="uid://emddocb62co" path="res://Objects/Fire.tscn" id="13_lvon4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33cxb"]
 size = Vector2(8, 8)
@@ -149,6 +150,13 @@ position = Vector2(48, 0)
 [node name="PortalGreen" parent="PortalGreens" instance=ExtResource("11_xvccb")]
 position = Vector2(0, -16)
 connected_object_path = "PortalRed"
+
+[node name="PortalGreen2" parent="PortalGreens" instance=ExtResource("11_xvccb")]
+position = Vector2(80, -16)
+connected_object_path = "PortalRed"
+
+[node name="Fire" parent="." instance=ExtResource("13_lvon4")]
+position = Vector2(-48, -32)
 
 [connection signal="area_entered" from="Exits/Exit1" to="Exits/Exit1" method="_on_area_entered"]
 [connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]

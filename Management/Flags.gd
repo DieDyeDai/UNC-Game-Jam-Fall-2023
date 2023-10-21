@@ -29,6 +29,16 @@ Collision Layers:
 		RayCast detects 10, RayCastLong detects 10
 	PortalRed: 10
 
+	---
+	
+	Fires:
+		Stops PushBlock, Player, Ghost
+		Allows (and then destroys) IceBlock
+	so
+	Body: 4
+	PushBlock, Player, Ghost raycast detect 4
+	IceBlock has fire detector that detects 4, and despawns at end of beat if detecting
+	
 """
 
 var tile_size = 16

@@ -27,6 +27,8 @@ var enabled = false
 
 var is_dead : bool = false
 
+var waited_this_beat = false
+
 @onready var ray = $RayCast2D
 @onready var rayLong = $RayCast2DLong
 
@@ -61,6 +63,10 @@ func _unhandled_input(event):
 		if event.is_action_pressed(dir):
 			print(str(dir))
 			test_input(dir)
+	if Input.is_action_just_pressed("wait"):
+		print("---pass---")
+		waited_this_beat = true
+		emit_signal("input_made")
 			
 func test_input(dir):
 	print("---")
@@ -87,6 +93,8 @@ func test_input(dir):
 				emit_signal("check_push", self, collision, inputs[dir] * Flags.tile_size)
 				# once the return signal is received, it runs on_checked_push_direction
 				# that method will move it and the object
+		else:
+			print("blocked")
 	else:
 		move(dir)
 
@@ -97,6 +105,7 @@ func on_checked_push_direction(pusher, body, direction, can_be_pushed):
 
 func move(dir : String):
 	enabled = false
+	waited_this_beat = false
 	
 	position += inputs[dir] * Flags.tile_size
 	
@@ -122,6 +131,7 @@ func move(dir : String):
 
 func move_direct(dir : Vector2):
 	enabled = false
+	waited_this_beat = false
 	
 	position += dir
 	
@@ -156,9 +166,11 @@ func on_disable_input():
 	
 func on_done_processing():
 	portalDetector.force_raycast_update()
-	if portalDetector.is_colliding():
+	if portalDetector.is_colliding() and !waited_this_beat:
 		# is colliding with a green crystal
+		enabled = false
 		emit_signal("entered_portalgreen", portalDetector.get_collider(), stored_direction)
 		print("entered_portalgreen")
-	
-	enabled = true
+		
+	else:
+		enabled = true

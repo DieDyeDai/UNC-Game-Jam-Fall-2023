@@ -2,10 +2,12 @@ class_name IceBlock
 extends Area2D
 
 signal checked_push_direction (body: Object, direction: Vector2, can_be_pushed: bool)
+signal melt()
 
 @export var stored_direction : Vector2 = Vector2.ZERO
 
 @onready var rayCast2D = $RayCast2D
+@onready var fireDetector = $FireDetector
 
 var directions = {
 	Vector2.ZERO : "still",
@@ -103,4 +105,18 @@ func check_movement(direction: Vector2) -> bool:
 	return !rayCast2D.is_colliding()
 
 func on_done_processing():
+	fireDetector.force_raycast_update()
+	if fireDetector.is_colliding():
+		var fire = fireDetector.get_collider()
+		self.connect("melt", fire.despawn)
+		emit_signal("melt")
+		despawn()
 	already_processed = 1
+
+func despawn():
+	collisionShape2D.disabled = true
+	rayCast2D.enabled = false
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite2D, "modulate:a", 0, 0.2).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(0.2).timeout
+	queue_free()

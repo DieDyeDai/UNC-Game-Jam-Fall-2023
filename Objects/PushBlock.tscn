@@ -30,5 +30,5 @@ hframes = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(8, 8)
-collision_mask = 514
+collision_mask = 522
 collide_with_areas = true

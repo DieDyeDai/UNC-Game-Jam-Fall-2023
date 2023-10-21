@@ -144,6 +144,8 @@ func on_ghost_ready(body: Object):
 					print("push_confirmed connected")
 				else:
 					print("push_confirmed not connected")
+	
+	player.enabled = true
 
 func process_interactions():
 	await get_tree().create_timer(0.001).timeout
@@ -156,6 +158,7 @@ func process_interactions():
 	for i in get_node("Objects").get_children():
 		#await get_tree().create_timer(0.01).timeout
 		emit_signal("process_interactions_signal", i)
+	#await get_tree().create_timer(0.03).timeout
 	emit_signal("done_processing")
 
 
@@ -169,6 +172,6 @@ func emit_level_changed_signal(orig_area, orig_scene, target_area, target_scene,
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
 		get_node("Exits").get_node("RESET").global_position = player.global_position
-	elif Input.is_action_just_pressed("wait"):
-		print("---pass---")
-		process_interactions()
+#	elif Input.is_action_just_pressed("wait"):
+#		print("---pass---")
+#		process_interactions()

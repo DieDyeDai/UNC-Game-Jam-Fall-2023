@@ -138,3 +138,10 @@ hframes = 2
 position = Vector2(8, 8)
 collision_mask = 514
 collide_with_areas = true
+
+[node name="FireDetector" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(1, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true

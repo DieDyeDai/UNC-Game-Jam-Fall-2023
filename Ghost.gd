@@ -115,5 +115,9 @@ func on_done_processing():
 
 func despawn():
 	collisionShape2D.disabled = true
-	sprite2D.set_modulate(lerp(get_modulate(), Color(1,1,1,1), 0.2))
+	ray.enabled = false
+	rayLong.enabled = false
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite2D, "modulate:a", 0, 0.2).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(0.2).timeout
 	queue_free()
