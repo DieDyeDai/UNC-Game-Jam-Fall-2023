@@ -17,6 +17,9 @@ signal done_processing
 
 var scene_has_player : bool = false
 
+var ghost_stored_location : Vector2 = Vector2.ZERO
+var ghost_stored_direction : Vector2 = Vector2.ZERO
+
 func _ready():
 	for i in exits:
 		i.connect("loading_zone_entered", self.emit_level_changed_signal)
@@ -69,7 +72,21 @@ func _ready():
 						print("push_confirmed connected")
 					else:
 						print("push_confirmed not connected")
-			
+		
+		if has_node("PortalGreens") and has_node("PortalReds"):
+			for i in get_node("PortalGreens").get_children():
+				player.connect("entered_portalgreen", i.on_entered_portalgreen)
+				if player.is_connected("entered_portalgreen", i.on_entered_portalgreen):
+					print("entered_portalgreen connected")
+				else:
+					print("entered_portalgreen not connected")
+			for i in get_node("PortalReds").get_children():
+				i.connect("create_ghost", self.create_ghost)
+				if i.is_connected("create_ghost", self.create_ghost):
+					print("create_ghost connected")
+				else:
+					print("create_ghost not connected")
+		
 	else:
 		scene_has_player = false
 	"""
@@ -87,7 +104,52 @@ func push_object(pushed_body, direction: Vector2):
 		print("should be connected")
 	emit_signal("pushed", pushed_body, direction)
 
+func create_ghost(location: Vector2, direction: Vector2):
+	
+	ghost_stored_location = location
+	ghost_stored_direction = direction
+		
+	print("create ghost at " + str(location) + " with direction " + str(direction))
+	var ghost = load("res://Ghost.tscn").instantiate()
+	get_node("Ghosts").add_child(ghost)
+	ghost_stored_direction = direction
+
+func on_ghost_ready(body: Object):
+	body.stored_direction = ghost_stored_direction
+	body.position = ghost_stored_location
+	self.connect("process_interactions_signal", body.process_interactions)
+	self.connect("done_processing", body.on_done_processing)
+	if self.is_connected("process_interactions_signal", body.process_interactions):
+		print("process_interactions_signal connected")
+	else:
+		print("process_interactions_signal not connected")
+	
+	if has_node("Objects"):
+		for i in get_node("Objects").get_children():
+			if i.is_in_group("Pushable"):
+				body.connect("check_push", i.on_check_push)
+				if body.is_connected("check_push", i.on_check_push):
+					print("check_push connected")
+				else:
+					print("check_push not connected")
+					
+				i.connect("checked_push_direction", body.on_checked_push_direction)
+				if i.is_connected("checked_push_direction", body.on_checked_push_direction):
+					print("push connected")
+				else:
+					print("push not connected")
+				
+				body.connect("push_confirmed", i.on_push_confirmed)
+				if body.is_connected("push_confirmed", i.on_push_confirmed):
+					print("push_confirmed connected")
+				else:
+					print("push_confirmed not connected")
+
 func process_interactions():
+	await get_tree().create_timer(0.001).timeout
+	for i in get_node("Ghosts").get_children():
+		emit_signal("process_interactions_signal", i)
+		await get_tree().create_timer(0.001).timeout
 	for i in get_node("Objects").get_children():
 		emit_signal("process_interactions_signal", i)
 		await get_tree().create_timer(0.001).timeout
@@ -95,7 +157,7 @@ func process_interactions():
 		#await get_tree().create_timer(0.01).timeout
 		emit_signal("process_interactions_signal", i)
 	emit_signal("done_processing")
-	
+
 
 func cleanup(): #called instead of queue_free()
 	queue_free()

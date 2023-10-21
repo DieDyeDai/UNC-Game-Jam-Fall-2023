@@ -3,23 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bg5ug7jee40a" path="res://assets/CrystalGreen.png" id="1_axdny"]
 [ext_resource type="Script" path="res://Objects/PortalGreen.gd" id="1_gemti"]
 
-[sub_resource type="Animation" id="Animation_htur8"]
-resource_name = "CrystalGreen"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
 [sub_resource type="Animation" id="Animation_mrpdr"]
 length = 0.001
 tracks/0/type = "value"
@@ -35,9 +18,26 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_hl5rj"]
+resource_name = "CrystalGreen"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_abvkn"]
 _data = {
-"CrystalGreen": SubResource("Animation_htur8"),
+"CrystalGreen": SubResource("Animation_hl5rj"),
 "RESET": SubResource("Animation_mrpdr")
 }
 
@@ -45,7 +45,7 @@ _data = {
 size = Vector2(14, 14)
 
 [node name="PortalGreen" type="Area2D"]
-z_index = 2
+z_index = 5
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_gemti")
@@ -53,8 +53,8 @@ script = ExtResource("1_gemti")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_axdny")
 centered = false
-offset = Vector2(0, -16)
-hframes = 7
+offset = Vector2(0, -20)
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

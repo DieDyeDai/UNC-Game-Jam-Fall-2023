@@ -18,6 +18,8 @@ var just_pushed = false
 var already_processed = 1
 # 0 if processed, 1 if hasn't attempted yet, 2 if failed first attempt
 
+var pusher : Object
+
 @onready var animationPlayer = $AnimationPlayer
 @onready var collisionShape2D = $CollisionShape2D
 @onready var sprite2D = $Sprite2D
@@ -64,10 +66,11 @@ func process_interactions(body):
 
 				
 
-func on_check_push(body, direction):
+func on_check_push(pusher, body, direction):
 	if self == body:
+		self.pusher = pusher
 		print("checking push direction: " + str(check_movement(direction)))
-		emit_signal("checked_push_direction", body, direction, check_movement(direction))
+		emit_signal("checked_push_direction", pusher, body, direction, check_movement(direction))
 
 func on_push_confirmed(body, direction):
 	if self == body:

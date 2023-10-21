@@ -6,8 +6,10 @@ signal disable_input
 
 signal input_made
 
-signal check_push(body: Object, direction: Vector2)
-signal push_confirmed(body: Object, direction: Vector2)
+signal check_push(pusher: Object, body: Object, direction: Vector2)
+signal push_confirmed(pusher: Object, body: Object, direction: Vector2)
+
+signal entered_portalgreen(body: Object, direction: Vector2)
 
 var animation_speed = 10
 var moving = false
@@ -18,6 +20,8 @@ var inputs = {
 	"down": Vector2.DOWN
 }
 var direction = "still"
+
+var stored_direction = Vector2.ZERO
 
 var enabled = false
 
@@ -32,6 +36,7 @@ var is_dead : bool = false
 @onready var movingDisplay = $MovingDisplay
 
 @onready var exitDetector = $ExitDetector
+@onready var portalDetector = $PortalDetector
 #@onready var rayLongDisplay = $rayLongSprite
 
 func _ready():
@@ -79,14 +84,14 @@ func test_input(dir):
 				print("rayLong colliding")
 			else:
 				print("rayLong not colliding")
-				emit_signal("check_push", collision, inputs[dir] * Flags.tile_size)
+				emit_signal("check_push", self, collision, inputs[dir] * Flags.tile_size)
 				# once the return signal is received, it runs on_checked_push_direction
 				# that method will move it and the object
 	else:
 		move(dir)
 
-func on_checked_push_direction(body, direction, can_be_pushed):
-	if can_be_pushed:
+func on_checked_push_direction(pusher, body, direction, can_be_pushed):
+	if can_be_pushed and self == pusher:
 		emit_signal("push_confirmed", body, direction)
 		move_direct(direction)
 
@@ -94,6 +99,8 @@ func move(dir : String):
 	enabled = false
 	
 	position += inputs[dir] * Flags.tile_size
+	
+	stored_direction = inputs[dir] * Flags.tile_size
 	
 	var entering_portal = 1.0 # false
 	exitDetector.force_raycast_update()
@@ -117,8 +124,16 @@ func move_direct(dir : Vector2):
 	enabled = false
 	
 	position += dir
+	
+	stored_direction = dir
+	
+	var entering_portal = 1.0 # false
+	exitDetector.force_raycast_update()
+	if exitDetector.is_colliding():
+		entering_portal = 5.0
+	print(entering_portal)
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed).from(Vector2(8,8) + dir * -1)
+	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed * entering_portal).from(Vector2(8,8) + dir * -1)
 	
 	#var tween = get_tree().create_tween()
 	#tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_SINE)
@@ -140,4 +155,10 @@ func on_disable_input():
 	print("disabling input")
 	
 func on_done_processing():
+	portalDetector.force_raycast_update()
+	if portalDetector.is_colliding():
+		# is colliding with a green crystal
+		emit_signal("entered_portalgreen", portalDetector.get_collider(), stored_direction)
+		print("entered_portalgreen")
+	
 	enabled = true

@@ -5,13 +5,29 @@ extends Node
 Collision Layers:
 	Tiles: 1, 2
 	Player: 1, 2, 8
-		RayCast detects 2, RayCastLong detects 1, 2
+		RayCast detects 2, RayCastLong detects 2
 	Loading Zones: 7, 8
+	ExitDetector on 7
 	PushBlock, IceBlock: 1, 2
 		RayCast detects 2
 	so Button should be on layer 1
 	
-	and Portal and Player should be on layer 3?
+	PortalGreen on layer 3
+	PortalDetector (raycast on player) detects 3
+	
+	PortalRed on layer 2 (should be solid)
+	
+	---
+	
+	Ghost shouldn't interact with player
+	so
+	Tiles: 1, 2, 9, 10
+	PushBlock, IceBlock: 1, 2, 9, 10
+		RayCast detects 2, 10
+	Button: 1, 9
+	Ghost: 9, 10
+		RayCast detects 10, RayCastLong detects 10
+	PortalRed: 10
 
 """
 

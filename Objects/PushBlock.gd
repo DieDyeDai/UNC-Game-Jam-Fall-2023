@@ -1,9 +1,11 @@
 class_name PushBlock
 extends Area2D
 
-signal checked_push_direction (body: Object, direction: Vector2, can_be_pushed: bool)
+signal checked_push_direction (pusher: Object, body: Object, direction: Vector2, can_be_pushed: bool)
 
 #var direction = "still"
+
+var pusher : Object
 
 @onready var rayCast2D = $RayCast2D
 @onready var collisionShape2D = $CollisionShape2D
@@ -18,10 +20,11 @@ func _ready():
 func _process(delta):
 	pass
 
-func on_check_push(body, direction):
+func on_check_push(pusher, body, direction):
 	if self == body:
+		self.pusher = pusher
 		print("checking push direction: " + str(check_movement(direction)))
-		emit_signal("checked_push_direction", body, direction, check_movement(direction))
+		emit_signal("checked_push_direction", pusher, body, direction, check_movement(direction))
 
 func on_push_confirmed(body, direction):
 	if self == body:

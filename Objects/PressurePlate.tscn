@@ -60,6 +60,8 @@ _data = {
 
 [node name="PressurePlate" type="Area2D"]
 z_index = 3
+collision_layer = 257
+collision_mask = 257
 script = ExtResource("1_ih80d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
