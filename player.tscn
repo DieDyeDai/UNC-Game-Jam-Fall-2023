@@ -35,22 +35,6 @@ tracks/0/keys = {
 "values": [Vector2i(16, 1), Vector2i(17, 1), Vector2i(18, 1), Vector2i(2, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_2gu6g"]
-resource_name = "up"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(16, 9), Vector2i(17, 9), Vector2i(18, 9), Vector2i(2, 10)]
-}
-
 [sub_resource type="Animation" id="Animation_cbs6n"]
 resource_name = "left"
 length = 0.6
@@ -83,6 +67,22 @@ tracks/0/keys = {
 "values": [Vector2i(16, 16), Vector2i(16, 15), Vector2i(17, 15), Vector2i(1, 16)]
 }
 
+[sub_resource type="Animation" id="Animation_2gu6g"]
+resource_name = "up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(16, 9), Vector2i(17, 9), Vector2i(18, 9), Vector2i(2, 10)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3qh4"]
 _data = {
 "RESET": SubResource("Animation_pvnvm"),
@@ -103,6 +103,7 @@ script = ExtResource("1_26y8w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_aggge")
 hframes = 32
 vframes = 17

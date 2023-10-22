@@ -48,7 +48,7 @@ Collision Layers:
 var tile_size = 16
 var anim_speed = 0.08
 
-var saved_level = "res://Maps/Levels/Level1.tscn"
+var saved_level = "res://Maps/Levels/Level3.tscn"
 #var saved_level = "res://Maps/Levels/Level2.tscn"
 #var saved_level = "res://Maps/Levels/Level3.tscn"
 #var saved_level = "res://Maps/Levels/Level4.tscn"
