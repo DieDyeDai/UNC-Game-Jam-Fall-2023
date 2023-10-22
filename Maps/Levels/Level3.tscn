@@ -100,45 +100,45 @@ position = Vector2(0, -96)
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="PressurePlate" parent="Objects" instance=ExtResource("8_qdm67")]
-position = Vector2(-112, 48)
-connected_object_path = "Door1_3"
+position = Vector2(32, 16)
+connected_object_path = "Door1_1"
 metadata/_edit_group_ = true
 
 [node name="Wire" type="Line2D" parent="Objects/PressurePlate"]
 z_index = 1
 position = Vector2(8, 0)
-points = PackedVector2Array(-6, 8, -56, 8, -56, -144, 104, -144)
+points = PackedVector2Array(0, 2, 0, -72, -24, -72)
 width = 1.0
 default_color = Color(0.05, 1, 1, 1)
 
 [node name="PressurePlate2" parent="Objects" instance=ExtResource("8_qdm67")]
-position = Vector2(32, -16)
+position = Vector2(96, 32)
 connected_object_path = "Door1_2"
 metadata/_edit_group_ = true
 
 [node name="Wire" type="Line2D" parent="Objects/PressurePlate2"]
 z_index = 1
 position = Vector2(8, 0)
-points = PackedVector2Array(0, 2, 0, -48, -24, -48)
+points = PackedVector2Array(0, 2, 0, -104, -88, -104)
 width = 1.0
 default_color = Color(0.05, 1, 1, 1)
 
 [node name="PressurePlate3" parent="Objects" instance=ExtResource("8_qdm67")]
-position = Vector2(112, 48)
-connected_object_path = "Door1_1"
+position = Vector2(-80, 32)
+connected_object_path = "Door1_3"
 metadata/_edit_group_ = true
 
 [node name="Wire" type="Line2D" parent="Objects/PressurePlate3"]
 z_index = 1
 position = Vector2(8, 0)
-points = PackedVector2Array(0, 2, 0, -128, -104, -128)
+points = PackedVector2Array(-6, 8, -56, 8, -56, -120, 72, -120)
 width = 1.0
 default_color = Color(0.05, 1, 1, 1)
 
 [node name="PortalReds" type="Node2D" parent="."]
 
 [node name="PortalRed" parent="PortalReds" instance=ExtResource("9_cu3cm")]
-position = Vector2(32, 48)
+position = Vector2(32, 32)
 
 [node name="PortalGreens" type="Node2D" parent="."]
 

@@ -337,6 +337,12 @@ position = Vector2(192, -112)
 [node name="Fire48" parent="Fires" instance=ExtResource("13_w04tb")]
 position = Vector2(-8, -80)
 
+[node name="Fire49" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(160, -32)
+
+[node name="Fire50" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(160, 16)
+
 [node name="Waters" type="Node2D" parent="."]
 
 [node name="Water" parent="Waters" instance=ExtResource("14_vspwp")]
