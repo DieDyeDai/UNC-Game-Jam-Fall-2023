@@ -67,6 +67,9 @@ func _unhandled_input(event):
 		print("---pass---")
 		waited_this_beat = true
 		emit_signal("input_made")
+	
+	if Input.is_action_just_pressed("teleport"):
+		self.global_position = get_global_mouse_position()
 			
 func test_input(dir):
 	print("---")

@@ -60,10 +60,10 @@ func handle_level_changed(orig_area, orig_scene, target_area, target_scene, exit
 	print("exit_id:" + Flags.exit_id)
 	print("target_exit_id:" + Flags.target_exit_id)
 
-	#if current_scene.has_node("Player"):
-	#	current_player = current_scene.get_node("Player")
-	current_player.disable_input.emit()
-	print("sending disable input")
+	if current_scene.has_node("Player"):
+		current_player = current_scene.get_node("Player")
+		current_player.disable_input.emit()
+		print("sending disable input")
 	
 #	add_child(next_scene) moved to after fadeout
 	
@@ -92,7 +92,8 @@ func _on_animation_player_animation_finished(anim_name):
 				current_player = current_scene.get_node("Player")
 				connect_player_to_enable_disable_signals(current_player)
 				current_player.disable_input.emit()
-				print("sending disable input and enable camera")
+				print("sending disable input")
+				#print("sending disable input and enable camera")
 			
 			camera.set_zoom(Vector2(current_scene.zoom, current_scene.zoom))
 			

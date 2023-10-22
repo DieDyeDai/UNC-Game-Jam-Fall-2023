@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rgt3x480ypkp"]
+[gd_scene load_steps=16 format=3 uid="uid://rgt3x480ypkp"]
 
 [ext_resource type="Script" path="res://Management/Level.gd" id="1_segrh"]
 [ext_resource type="TileSet" uid="uid://bqmj2hikdbihp" path="res://Maps/Test/TileSet.tres" id="1_u3j8i"]
@@ -13,12 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://cupc27kw5xrhr" path="res://Objects/PortalGreen.tscn" id="11_xvccb"]
 [ext_resource type="PackedScene" uid="uid://cy5cq7fkh8hot" path="res://Objects/PortalRed.tscn" id="12_uxi3e"]
 [ext_resource type="PackedScene" uid="uid://emddocb62co" path="res://Objects/Fire.tscn" id="13_lvon4"]
+[ext_resource type="PackedScene" uid="uid://du65bh2c1nof2" path="res://Objects/Water.tscn" id="14_w34l2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33cxb"]
 size = Vector2(8, 8)
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_segrh")
+zoom = 1.6
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_u3j8i")
@@ -108,16 +110,16 @@ position = Vector2(16, -48)
 position = Vector2(-32, -48)
 
 [node name="IceBlock" parent="Objects" instance=ExtResource("5_5rylb")]
-position = Vector2(-112, 0)
+position = Vector2(-48, 0)
 stored_direction = Vector2(16, 0)
 
 [node name="IceBlock2" parent="Objects" instance=ExtResource("5_5rylb")]
-position = Vector2(48, -32)
+position = Vector2(32, -48)
 stored_direction = Vector2(-16, 0)
 id = "IceBlock2"
 
 [node name="IceBlock3" parent="Objects" instance=ExtResource("5_5rylb")]
-position = Vector2(-16, -16)
+position = Vector2(48, -48)
 id = "IceBlock2"
 
 [node name="Button" parent="Objects" instance=ExtResource("7_f6uuy")]
@@ -144,20 +146,29 @@ default_color = Color(0.05, 1, 1, 1)
 [node name="PortalReds" type="Node2D" parent="."]
 
 [node name="PortalRed" parent="PortalReds" instance=ExtResource("12_uxi3e")]
-position = Vector2(-48, 0)
+position = Vector2(16, 0)
+
+[node name="PortalRed2" parent="PortalReds" instance=ExtResource("12_uxi3e")]
+position = Vector2(-80, 0)
 
 [node name="PortalGreens" type="Node2D" parent="."]
 
 [node name="PortalGreen" parent="PortalGreens" instance=ExtResource("11_xvccb")]
 position = Vector2(0, -16)
-connected_object_path = "PortalRed"
+connected_object_paths = Array[String](["PortalRed"])
 
 [node name="PortalGreen2" parent="PortalGreens" instance=ExtResource("11_xvccb")]
-position = Vector2(80, -16)
-connected_object_path = "PortalRed"
+position = Vector2(16, -16)
+connected_object_paths = Array[String](["PortalRed2"])
 
 [node name="Fire" parent="." instance=ExtResource("13_lvon4")]
 position = Vector2(-48, -32)
+
+[node name="Water" parent="." instance=ExtResource("14_w34l2")]
+position = Vector2(-96, 0)
+
+[node name="Water2" parent="." instance=ExtResource("14_w34l2")]
+position = Vector2(-96, -16)
 
 [connection signal="area_entered" from="Exits/Exit1" to="Exits/Exit1" method="_on_area_entered"]
 [connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]

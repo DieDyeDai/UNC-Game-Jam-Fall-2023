@@ -19,6 +19,7 @@ var directions = {
 var just_pushed = false
 var already_processed = 1
 # 0 if processed, 1 if hasn't attempted yet, 2 if failed first attempt
+var despawning = false
 
 var pusher : Object
 
@@ -116,6 +117,8 @@ func on_done_processing():
 func despawn():
 	collisionShape2D.disabled = true
 	rayCast2D.enabled = false
+	fireDetector.set_collide_with_areas(false)
+	fireDetector.set_collide_with_bodies(false)
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite2D, "modulate:a", 0, 0.2).set_trans(Tween.TRANS_SINE)
 	await get_tree().create_timer(0.2).timeout

@@ -16,8 +16,8 @@ func _ready():
 func _process(delta):
 	pass
 
-func on_send_to_portalred(body, direction):
-	if self == body:
+func on_send_to_portalred(direction):
+	#if self == body:
 		# send signal to level to instantiate a ghost moving in direction 
 		emit_signal("create_ghost", position, direction)
 		print("create_ghost")

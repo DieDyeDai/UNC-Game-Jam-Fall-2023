@@ -112,35 +112,35 @@ default_color = Color(0.05, 1, 1, 1)
 
 [node name="PortalReds" type="Node2D" parent="."]
 
-[node name="PortalRed4" parent="PortalReds" instance=ExtResource("8_yu21v")]
-position = Vector2(112, 64)
+[node name="PortalRed1" parent="PortalReds" instance=ExtResource("8_yu21v")]
+position = Vector2(48, -80)
 
 [node name="PortalRed2" parent="PortalReds" instance=ExtResource("8_yu21v")]
 position = Vector2(128, -64)
 
-[node name="PortalRed1" parent="PortalReds" instance=ExtResource("8_yu21v")]
-position = Vector2(48, -80)
-
 [node name="PortalRed3" parent="PortalReds" instance=ExtResource("8_yu21v")]
 position = Vector2(32, 48)
+
+[node name="PortalRed4" parent="PortalReds" instance=ExtResource("8_yu21v")]
+position = Vector2(112, 64)
 
 [node name="PortalGreens" type="Node2D" parent="."]
 
 [node name="PortalGreen1" parent="PortalGreens" instance=ExtResource("9_q6u64")]
 position = Vector2(-112, -16)
-connected_object_path = "PortalRed1"
+connected_object_paths = Array[String](["PortalRed1"])
 
 [node name="PortalGreen2" parent="PortalGreens" instance=ExtResource("9_q6u64")]
 position = Vector2(-96, -16)
-connected_object_path = "PortalRed2"
+connected_object_paths = Array[String](["PortalRed2"])
 
 [node name="PortalGreen3" parent="PortalGreens" instance=ExtResource("9_q6u64")]
 position = Vector2(-112, 0)
-connected_object_path = "PortalRed3"
+connected_object_paths = Array[String](["PortalRed3"])
 
 [node name="PortalGreen4" parent="PortalGreens" instance=ExtResource("9_q6u64")]
 position = Vector2(-96, 0)
-connected_object_path = "PortalRed4"
+connected_object_paths = Array[String](["PortalRed4"])
 
 [connection signal="area_entered" from="Exits/Exit" to="Exits/Exit" method="_on_area_entered"]
 [connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]

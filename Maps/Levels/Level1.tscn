@@ -207,7 +207,7 @@ position = Vector2(16, 48)
 
 [node name="PortalGreen" parent="PortalGreens" instance=ExtResource("12_x1n66")]
 position = Vector2(0, 96)
-connected_object_path = "PortalRed"
+connected_object_paths = Array[String](["PortalRed"])
 
 [node name="Fire" parent="." instance=ExtResource("13_v7bdb")]
 position = Vector2(-128, -96)

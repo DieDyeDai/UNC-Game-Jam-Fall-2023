@@ -144,7 +144,7 @@ position = Vector2(32, 48)
 
 [node name="PortalGreen" parent="PortalGreens" instance=ExtResource("10_fc077")]
 position = Vector2(-16, -48)
-connected_object_path = "PortalRed"
+connected_object_paths = Array[String](["PortalRed"])
 
 [connection signal="area_entered" from="Exits/Exit" to="Exits/Exit" method="_on_area_entered"]
 [connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]

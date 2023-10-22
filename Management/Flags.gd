@@ -43,15 +43,22 @@ Collision Layers:
 	PushBlock, Player, Ghost raycast detect 4
 	IceBlock has fire detector that detects 4, and despawns at end of beat if detecting
 	
+	---
+	
+	"Gap" that only player cannot cross?
+	Thus player's raycast (short) should detect 5
+	and the block should only be on 5
 """
 
 var tile_size = 16
 var anim_speed = 0.08
 
-var saved_level = "res://Maps/Levels/Level3.tscn"
+var saved_level = "res://Maps/Cutscenes/Intro.tscn"
+#var saved_level = "res://Maps/Levels/Level1.tscn"
 #var saved_level = "res://Maps/Levels/Level2.tscn"
 #var saved_level = "res://Maps/Levels/Level3.tscn"
 #var saved_level = "res://Maps/Levels/Level4.tscn"
+#var saved_level = "res://Maps/Levels/Level5.tscn"
 #var saved_level = "res://Maps/Test/TestMap1.tscn"
 var exit_id
 var target_exit_id
@@ -70,7 +77,7 @@ var during_scene_fadein : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#saved_level = "res://Maps/Test/TestMap1.tscn"
-	saved_level = "res://Maps/Levels/Level1.tscn"
+	#saved_level = "res://Maps/Levels/Level1.tscn"
 	#saved_level = "res://Maps/Levels/Level3.tscn"
 	#saved_level = "res://Maps/Levels/Level4.tscn"
 	pass # Replace with function body.

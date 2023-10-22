@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2t8twj1q8eng"]
+
+[ext_resource type="Script" path="res://Maps/Cutscenes/Intro.gd" id="1_eb306"]
+[ext_resource type="Texture2D" uid="uid://1t0i8sh7fpqh" path="res://assets/spaceprompt.png" id="2_h76k0"]
+[ext_resource type="Texture2D" uid="uid://c3x4e70ynjwpm" path="res://assets/intro1.png" id="2_hga7y"]
+[ext_resource type="Texture2D" uid="uid://cgcyvynadspic" path="res://assets/intro2.png" id="3_32fpj"]
+[ext_resource type="Texture2D" uid="uid://x0yuimle8ksk" path="res://assets/intro3.png" id="4_1dm68"]
+[ext_resource type="Texture2D" uid="uid://hwusy3sj6n17" path="res://assets/intro4.png" id="5_05g05"]
+[ext_resource type="Texture2D" uid="uid://y2nvjpsgmy4n" path="res://assets/intro5.png" id="6_eafsc"]
+[ext_resource type="Texture2D" uid="uid://b6qnscm32qrmb" path="res://assets/intro5_2.png" id="7_rksod"]
+[ext_resource type="Texture2D" uid="uid://d0wkc2vwyudtv" path="res://assets/intro5_3.png" id="8_rg763"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_eb306")
+zoom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -408.0
+offset_top = -288.0
+offset_right = 456.0
+offset_bottom = 296.0
+color = Color(0, 0, 0, 1)
+
+[node name="Intro1" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("2_hga7y")
+metadata/_edit_lock_ = true
+
+[node name="Intro2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("3_32fpj")
+metadata/_edit_lock_ = true
+
+[node name="Intro3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("4_1dm68")
+metadata/_edit_lock_ = true
+
+[node name="Intro4" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("5_05g05")
+metadata/_edit_lock_ = true
+
+[node name="Intro5" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("6_eafsc")
+metadata/_edit_lock_ = true
+
+[node name="Intro5_2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("7_rksod")
+metadata/_edit_lock_ = true
+
+[node name="Intro5_3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+texture = ExtResource("8_rg763")
+metadata/_edit_lock_ = true
+
+[node name="SpacePrompt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(336, 252)
+scale = Vector2(2, 2)
+texture = ExtResource("2_h76k0")

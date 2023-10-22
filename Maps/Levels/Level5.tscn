@@ -1,0 +1,793 @@
+[gd_scene load_steps=17 format=3 uid="uid://bbf3fa33s0n8c"]
+
+[ext_resource type="Script" path="res://Management/Level.gd" id="1_65fcp"]
+[ext_resource type="TileSet" uid="uid://bqmj2hikdbihp" path="res://Maps/Test/TileSet.tres" id="2_o53iw"]
+[ext_resource type="PackedScene" uid="uid://b0wysm6c2nqgj" path="res://player.tscn" id="3_03y5t"]
+[ext_resource type="Texture2D" uid="uid://8dn8rnqnymuo" path="res://assets/water.png" id="3_kuwec"]
+[ext_resource type="PackedScene" uid="uid://mh3oua5r8tpy" path="res://Management/ExitPortalSprite.tscn" id="4_mbc08"]
+[ext_resource type="Script" path="res://Management/LoadingZone.gd" id="5_y5y6t"]
+[ext_resource type="PackedScene" uid="uid://cksuceo2m1s3u" path="res://Objects/Door1.tscn" id="7_u5kwj"]
+[ext_resource type="PackedScene" uid="uid://cw3olap7ujge2" path="res://Objects/PressurePlate.tscn" id="8_6e55b"]
+[ext_resource type="PackedScene" uid="uid://cy5cq7fkh8hot" path="res://Objects/PortalRed.tscn" id="9_wcemi"]
+[ext_resource type="PackedScene" uid="uid://cupc27kw5xrhr" path="res://Objects/PortalGreen.tscn" id="10_28ot7"]
+[ext_resource type="PackedScene" uid="uid://bw0vjibq2cha1" path="res://Objects/IceBlock.tscn" id="10_oyu7v"]
+[ext_resource type="PackedScene" uid="uid://emddocb62co" path="res://Objects/Fire.tscn" id="13_w04tb"]
+[ext_resource type="PackedScene" uid="uid://du65bh2c1nof2" path="res://Objects/Water.tscn" id="14_vspwp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rkks"]
+texture = ExtResource("3_kuwec")
+0:0/animation_frame_0/duration = 0.5
+0:0/animation_frame_1/duration = 0.5
+0:0/animation_frame_2/duration = 0.5
+0:0/animation_frame_3/duration = 0.5
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_led4m"]
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_0rkks")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33cxb"]
+size = Vector2(8, 8)
+
+[node name="Level5" type="Node2D"]
+script = ExtResource("1_65fcp")
+zoom = 1.6
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_o53iw")
+format = 2
+layer_0/tile_data = PackedInt32Array(720882, 524289, 7, 720883, 524289, 7, 720884, 524289, 7, 720885, 524289, 7, 720886, 524289, 7, 720887, 524289, 7, 720888, 524289, 7, 720889, 524289, 7, 720890, 524289, 7, 720891, 524289, 7, 720892, 524289, 7, 720893, 524289, 7, 720894, 524289, 7, 720895, 524289, 7, 655360, 524289, 7, 655362, 524289, 7, 655363, 524289, 7, 655364, 524289, 7, 655365, 524289, 7, 655366, 524289, 7, 655367, 524289, 7, 655368, 524289, 7, 655369, 524289, 7, 655370, 524289, 7, 655371, 524289, 7, 655372, 524289, 7, 655373, 524289, 7, 655361, 524289, 7, 589837, 524289, 7, 524301, 524289, 7, 458765, 524289, 7, 393229, 524289, 7, 327693, 524289, 7, 262157, 524289, 7, 196621, 524289, 7, 131085, 524289, 7, 65549, 524289, 7, 13, 524289, 7, -65523, 524289, 7, -131059, 524289, 7, -196595, 524289, 7, -262131, 524289, 7, -327667, 524289, 7, -393203, 524289, 7, -458739, 524289, 7, -524275, 524289, 7, -589811, 524289, 7, -655347, 524289, 7, -720883, 524289, 7, -720884, 524289, 7, -720885, 524289, 7, -720886, 524289, 7, -720887, 524289, 7, -720888, 524289, 7, -720889, 524289, 7, -720890, 524289, 7, -720891, 524289, 7, -720892, 524289, 7, -720893, 524289, 7, -720894, 524289, 7, -720895, 524289, 7, -720896, 524289, 7, -655361, 524289, 7, -655362, 524289, 7, -655363, 524289, 7, -655364, 524289, 7, -655365, 524289, 7, -655366, 524289, 7, -655367, 524289, 7, -655368, 524289, 7, -655369, 524289, 7, -655370, 524289, 7, -655371, 524289, 7, -655372, 524289, 7, -655373, 524289, 7, -655374, 524289, 7, -589838, 524289, 7, -524302, 524289, 7, -458766, 524289, 7, -393230, 524289, 7, -327694, 524289, 7, -262158, 524289, 7, -196622, 524289, 7, -131086, 524289, 7, -65550, 524289, 7, -14, 524289, 7, 65522, 524289, 7, 131058, 524289, 7, 196594, 524289, 7, 262130, 524289, 7, 327666, 524289, 7, 393202, 524289, 7, 458738, 524289, 7, 524274, 524289, 7, 589810, 524289, 7, 655346, 524289, 7, 262136, 65537, 0, 196602, 65537, 0, 327675, 131073, 0, -262145, 327681, 0, -327680, 1, 0, -327681, 262145, 5, -393216, 327681, 5, -262144, 131073, 0, -196609, 131073, 0, -262143, 65537, 0, -262142, 65537, 0, -196611, 262145, 0, -196610, 262145, 0, 851952, 524289, 7, 851953, 524289, 7, 851954, 524289, 7, 851955, 524289, 7, 851956, 524289, 7, 851957, 524289, 7, 851958, 524289, 7, 851959, 524289, 7, 851960, 524289, 7, 851961, 524289, 7, 851962, 524289, 7, 851963, 524289, 7, 851964, 524289, 7, 851965, 524289, 7, 851966, 524289, 7, 851967, 524289, 7, 786432, 524289, 7, 786433, 524289, 7, 786434, 524289, 7, 786435, 524289, 7, 786436, 524289, 7, 786437, 524289, 7, 786438, 524289, 7, 786439, 524289, 7, 786440, 524289, 7, 786441, 524289, 7, 786442, 524289, 7, 786443, 524289, 7, 786444, 524289, 7, 786445, 524289, 7, 786446, 524289, 7, 786447, 524289, 7, 720911, 524289, 7, 655375, 524289, 7, 589839, 524289, 7, 524303, 524289, 7, 458767, 524289, 7, 393231, 524289, 7, 327695, 524289, 7, 262159, 524289, 7, 196623, 524289, 7, 131087, 524289, 7, 65551, 524289, 7, 15, 524289, 7, -65521, 524289, 7, -131057, 524289, 7, -196593, 524289, 7, -262129, 524289, 7, -327665, 524289, 7, -393201, 524289, 7, -458737, 524289, 7, -524273, 524289, 7, -589809, 524289, 7, -655345, 524289, 7, -720881, 524289, 7, -786417, 524289, 7, -851953, 524289, 7, -851954, 524289, 7, -851955, 524289, 7, -851956, 524289, 7, -851957, 524289, 7, -851958, 524289, 7, -851959, 524289, 7, -851960, 524289, 7, -851961, 524289, 7, -851962, 524289, 7, -851963, 524289, 7, -851964, 524289, 7, -851965, 524289, 7, -851966, 524289, 7, -851967, 524289, 7, -851968, 524289, 7, -786433, 524289, 7, -786434, 524289, 7, -786435, 524289, 7, -786436, 524289, 7, -786437, 524289, 7, -786438, 524289, 7, -786439, 524289, 7, -786440, 524289, 7, -786441, 524289, 7, -786442, 524289, 7, -786443, 524289, 7, -786444, 524289, 7, -786445, 524289, 7, -786446, 524289, 7, -786447, 524289, 7, -786448, 524289, 7, -720912, 524289, 7, -655376, 524289, 7, -589840, 524289, 7, -524304, 524289, 7, -458768, 524289, 7, -393232, 524289, 7, -327696, 524289, 7, -262160, 524289, 7, -196624, 524289, 7, -131088, 524289, 7, -65552, 524289, 7, -16, 524289, 7, 65520, 524289, 7, 131056, 524289, 7, 196592, 524289, 7, 262128, 524289, 7, 327664, 524289, 7, 393200, 524289, 7, 458736, 524289, 7, 524272, 524289, 7, 589808, 524289, 7, 655344, 524289, 7, 720880, 524289, 7, 786416, 524289, 7, -589837, 393217, 0, -524301, 393217, 1, -458765, 393217, 2, -589836, 458753, 0, -524300, 458753, 1, -458764, 458753, 2, -589835, 524289, 0, -524299, 524289, 1, -458763, 524289, 2, -589834, 589825, 0, -524298, 589825, 1, -458762, 589825, 2, -589833, 393217, 0, -524297, 393217, 1, -458761, 393217, 2, -589832, 458753, 0, -524296, 458753, 1, -458760, 458753, 2, -589831, 524289, 0, -524295, 524289, 1, -458759, 524289, 2, -589830, 589825, 0, -524294, 589825, 1, -458758, 589825, 2, -589829, 393217, 0, -524293, 393217, 1, -458757, 393217, 2, -589828, 458753, 0, -524292, 458753, 1, -458756, 458753, 2, -589827, 524289, 0, -524291, 524289, 1, -458755, 524289, 2, -589826, 589825, 0, -524290, 589825, 1, -458754, 589825, 2, -589825, 458753, 0, -524289, 458753, 1, -458753, 458753, 2, -655360, 524289, 0, -589824, 524289, 1, -524288, 524289, 2, -655359, 393217, 0, -589823, 393217, 1, -524287, 393217, 2, -655358, 458753, 0, -589822, 458753, 1, -524286, 458753, 2, -655357, 524289, 0, -589821, 524289, 1, -524285, 524289, 2, -655356, 589825, 0, -589820, 589825, 1, -524284, 589825, 2, -655355, 393217, 0, -589819, 393217, 1, -524283, 393217, 2, -655354, 458753, 0, -589818, 458753, 1, -524282, 458753, 2, -655353, 524289, 0, -589817, 524289, 1, -524281, 524289, 2, -655352, 589825, 0, -589816, 589825, 1, -524280, 589825, 2, -655351, 393217, 0, -589815, 393217, 1, -524279, 393217, 2, -655350, 458753, 0, -589814, 458753, 1, -524278, 458753, 2, -655349, 524289, 0, -589813, 524289, 1, -524277, 524289, 2, -655348, 589825, 0, -589812, 589825, 1, -524276, 589825, 2, -393229, 393217, 0, -327693, 393217, 1, -262157, 393217, 2, -393228, 458753, 0, -327692, 458753, 1, -262156, 458753, 2, -393227, 524289, 0, -327691, 524289, 1, -262155, 524289, 2, -393226, 589825, 0, -327690, 589825, 1, -262154, 589825, 2, -393225, 393217, 0, -327689, 393217, 1, -262153, 393217, 2, -393224, 458753, 0, -327688, 458753, 1, -262152, 458753, 2, -393223, 524289, 0, -327687, 524289, 1, -262151, 524289, 2, -393222, 589825, 0, -327686, 589825, 1, -262150, 589825, 2, -393221, 393217, 0, -327685, 393217, 1, -262149, 393217, 2, -393220, 458753, 0, -327684, 458753, 1, -262148, 458753, 2, -393219, 524289, 0, -327683, 524289, 1, -262147, 524289, 2, -393218, 589825, 0, -327682, 589825, 1, -262146, 589825, 2, -458751, 393217, 0, -393215, 393217, 1, -327679, 393217, 2, -458750, 458753, 0, -393214, 458753, 1, -327678, 458753, 2, -458749, 524289, 0, -393213, 524289, 1, -327677, 524289, 2, -458748, 589825, 0, -393212, 589825, 1, -327676, 589825, 2, -458747, 393217, 0, -393211, 393217, 1, -327675, 393217, 2, -458746, 458753, 0, -393210, 458753, 1, -327674, 458753, 2, -458745, 524289, 0, -393209, 524289, 1, -327673, 524289, 2, -458744, 589825, 0, -393208, 589825, 1, -327672, 589825, 2, -458743, 393217, 0, -393207, 393217, 1, -327671, 393217, 2, -458742, 458753, 0, -393206, 458753, 1, -327670, 458753, 2, -458741, 524289, 0, -393205, 524289, 1, -327669, 524289, 2, -458740, 589825, 0, -393204, 589825, 1, -327668, 589825, 2, -393217, 458753, 1, -458752, 524289, 1, -196621, 393217, 0, -131085, 393217, 1, -65549, 393217, 2, -196620, 458753, 0, -131084, 458753, 1, -65548, 458753, 2, -196619, 524289, 0, -131083, 524289, 1, -65547, 524289, 2, -196618, 589825, 0, -131082, 589825, 1, -65546, 589825, 2, -196617, 393217, 0, -131081, 393217, 1, -65545, 393217, 2, -196616, 458753, 0, -131080, 458753, 1, -65544, 458753, 2, -196615, 524289, 0, -131079, 524289, 1, -65543, 524289, 2, -196614, 589825, 0, -131078, 589825, 1, -65542, 589825, 2, -196613, 393217, 0, -196612, 458753, 0, -262141, 524289, 0, -262140, 589825, 0, -131077, 393217, 1, -65541, 393217, 2, -131076, 458753, 1, -65540, 458753, 2, -131075, 524289, 1, -65539, 524289, 2, -131074, 589825, 1, -65538, 589825, 2, -196607, 393217, 1, -131071, 393217, 2, -196606, 458753, 1, -131070, 458753, 2, -196605, 524289, 1, -131069, 524289, 2, -196604, 589825, 1, -131068, 589825, 2, -131073, 458753, 1, -65537, 458753, 2, -196608, 524289, 1, -131072, 524289, 2, -262139, 393217, 0, -196603, 393217, 1, -131067, 393217, 2, -262138, 458753, 0, -196602, 458753, 1, -131066, 458753, 2, -262137, 524289, 0, -196601, 524289, 1, -131065, 524289, 2, -262136, 589825, 0, -196600, 589825, 1, -131064, 589825, 2, -262135, 393217, 0, -196599, 393217, 1, -131063, 393217, 2, -262134, 458753, 0, -196598, 458753, 1, -131062, 458753, 2, -262133, 524289, 0, -196597, 524289, 1, -131061, 524289, 2, -262132, 589825, 0, -196596, 589825, 1, -131060, 589825, 2, 131059, 393217, 0, 196595, 393217, 1, 262131, 393217, 2, 131060, 458753, 0, 196596, 458753, 1, 262132, 458753, 2, 131061, 524289, 0, 196597, 524289, 1, 262133, 524289, 2, 131062, 589825, 0, 196598, 589825, 1, 262134, 589825, 2, 131063, 393217, 0, 196599, 393217, 1, 262135, 393217, 2, 131064, 458753, 0, 196600, 458753, 1, 131065, 524289, 0, 196601, 524289, 1, 262137, 524289, 2, 131066, 589825, 0, 262138, 589825, 2, 131067, 393217, 0, 196603, 393217, 1, 262139, 393217, 2, 131068, 458753, 0, 196604, 458753, 1, 262140, 458753, 2, 131069, 524289, 0, 196605, 524289, 1, 262141, 524289, 2, 131070, 589825, 0, 196606, 589825, 1, 262142, 589825, 2, 65537, 393217, 0, 131073, 393217, 1, 196609, 393217, 2, 65538, 458753, 0, 131074, 458753, 1, 196610, 458753, 2, 65539, 524289, 0, 131075, 524289, 1, 196611, 524289, 2, 65540, 589825, 0, 131076, 589825, 1, 196612, 589825, 2, 65541, 393217, 0, 131077, 393217, 1, 196613, 393217, 2, 65542, 458753, 0, 131078, 458753, 1, 196614, 458753, 2, 65543, 524289, 0, 131079, 524289, 1, 196615, 524289, 2, 65544, 589825, 0, 131080, 589825, 1, 196616, 589825, 2, 65545, 393217, 0, 131081, 393217, 1, 196617, 393217, 2, 65546, 458753, 0, 131082, 458753, 1, 196618, 458753, 2, 65547, 524289, 0, 131083, 524289, 1, 196619, 524289, 2, 65548, 589825, 0, 131084, 589825, 1, 196620, 589825, 2, 262153, 393217, 0, 327689, 393217, 1, 393225, 393217, 2, 262154, 458753, 0, 327690, 458753, 1, 393226, 458753, 2, 262155, 524289, 0, 327691, 524289, 1, 393227, 524289, 2, 262156, 589825, 0, 327692, 589825, 1, 393228, 589825, 2, 458761, 393217, 0, 524297, 393217, 1, 589833, 393217, 2, 458762, 458753, 0, 524298, 458753, 1, 589834, 458753, 2, 458763, 524289, 0, 524299, 524289, 1, 589835, 524289, 2, 458764, 589825, 0, 524300, 589825, 1, 589836, 589825, 2, 458757, 393217, 0, 524293, 393217, 1, 589829, 393217, 2, 458758, 458753, 0, 524294, 458753, 1, 589830, 458753, 2, 458759, 524289, 0, 524295, 524289, 1, 589831, 524289, 2, 458760, 589825, 0, 524296, 589825, 1, 589832, 589825, 2, 262149, 393217, 0, 327685, 393217, 1, 393221, 393217, 2, 262150, 458753, 0, 327686, 458753, 1, 393222, 458753, 2, 262151, 524289, 0, 327687, 524289, 1, 393223, 524289, 2, 262152, 589825, 0, 327688, 589825, 1, 393224, 589825, 2, 262145, 393217, 0, 327681, 393217, 1, 393217, 393217, 2, 262146, 458753, 0, 327682, 458753, 1, 393218, 458753, 2, 262147, 524289, 0, 327683, 524289, 1, 393219, 524289, 2, 262148, 589825, 0, 327684, 589825, 1, 393220, 589825, 2, 458753, 393217, 0, 524289, 393217, 1, 589825, 393217, 2, 458754, 458753, 0, 524290, 458753, 1, 589826, 458753, 2, 458755, 524289, 0, 524291, 524289, 1, 589827, 524289, 2, 458756, 589825, 0, 524292, 589825, 1, 589828, 589825, 2, 524283, 393217, 0, 589819, 393217, 1, 655355, 393217, 2, 524284, 458753, 0, 589820, 458753, 1, 655356, 458753, 2, 524285, 524289, 0, 589821, 524289, 1, 655357, 524289, 2, 524286, 589825, 0, 589822, 589825, 1, 655358, 589825, 2, 393211, 393217, 1, 458747, 393217, 2, 327676, 458753, 0, 393212, 458753, 1, 458748, 458753, 2, 327677, 524289, 0, 393213, 524289, 1, 458749, 524289, 2, 327678, 589825, 0, 393214, 589825, 1, 458750, 589825, 2, 327671, 393217, 0, 393207, 393217, 1, 458743, 393217, 2, 327672, 458753, 0, 393208, 458753, 1, 458744, 458753, 2, 327673, 524289, 0, 393209, 524289, 1, 458745, 524289, 2, 327674, 589825, 0, 393210, 589825, 1, 458746, 589825, 2, 327667, 393217, 0, 393203, 393217, 1, 458739, 393217, 2, 327668, 458753, 0, 393204, 458753, 1, 458740, 458753, 2, 327669, 524289, 0, 393205, 524289, 1, 458741, 524289, 2, 327670, 589825, 0, 393206, 589825, 1, 458742, 589825, 2, 524275, 393217, 0, 589811, 393217, 1, 655347, 393217, 2, 524276, 458753, 0, 589812, 458753, 1, 655348, 458753, 2, 524277, 524289, 0, 589813, 524289, 1, 655349, 524289, 2, 524278, 589825, 0, 589814, 589825, 1, 655350, 589825, 2, 524279, 393217, 0, 589815, 393217, 1, 655351, 393217, 2, 524280, 458753, 0, 589816, 458753, 1, 655352, 458753, 2, 524281, 524289, 0, 589817, 524289, 1, 655353, 524289, 2, 524282, 589825, 0, 589818, 589825, 1, 655354, 589825, 2, 131071, 458753, 0, 196607, 458753, 1, 262143, 458753, 2, 65536, 524289, 0, 131072, 524289, 1, 196608, 524289, 2, 327679, 458753, 0, 393215, 458753, 1, 458751, 458753, 2, 262144, 524289, 0, 327680, 524289, 1, 393216, 524289, 2, 524287, 458753, 0, 589823, 458753, 1, 655359, 458753, 2, 458752, 524289, 0, 524288, 524289, 1, 589824, 524289, 2, -13, 393217, 0, -12, 458753, 0, -11, 524289, 0, -10, 589825, 0, -9, 393217, 0, -8, 458753, 0, -7, 524289, 0, -6, 589825, 0, -5, 393217, 0, -4, 458753, 0, -3, 524289, 0, -2, 589825, 0, -65535, 393217, 0, -65534, 458753, 0, -65533, 524289, 0, -65532, 589825, 0, -65531, 393217, 0, -65530, 458753, 0, -65529, 524289, 0, -65528, 589825, 0, -65527, 393217, 0, -65526, 458753, 0, -65525, 524289, 0, -65524, 589825, 0, -1, 458753, 0, -65536, 524289, 0, 65535, 458753, 2, 0, 524289, 2, 1, 393217, 2, 2, 458753, 2, 3, 524289, 2, 4, 589825, 2, 5, 393217, 2, 6, 458753, 2, 7, 524289, 2, 8, 589825, 2, 9, 393217, 2, 10, 458753, 2, 11, 524289, 2, 12, 589825, 2, 65531, 393217, 2, 65532, 458753, 2, 65533, 524289, 2, 65534, 589825, 2, 65527, 393217, 2, 65528, 458753, 2, 65529, 524289, 2, 65530, 589825, 2, 65523, 393217, 2, 65524, 458753, 2, 65525, 524289, 2, 65526, 589825, 2)
+
+[node name="TileMap2" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_led4m")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65549, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_03y5t")]
+position = Vector2(-192, 80)
+
+[node name="ExitPortalSprite" parent="." instance=ExtResource("4_mbc08")]
+position = Vector2(200, -72)
+
+[node name="Exits" type="Node2D" parent="."]
+
+[node name="Exit" type="Area2D" parent="Exits"]
+position = Vector2(200, -72)
+collision_layer = 192
+collision_mask = 192
+script = ExtResource("5_y5y6t")
+orig_area = "Levels"
+orig_scene = "Level5"
+target_area = "Cutscenes"
+target_scene = "Credits"
+exit_id = "Exit"
+target_exit_id = "default"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/Exit"]
+shape = SubResource("RectangleShape2D_33cxb")
+
+[node name="SpawnPosition" type="Node2D" parent="Exits/Exit"]
+position = Vector2(-392, 152)
+
+[node name="RESET" type="Area2D" parent="Exits"]
+position = Vector2(-224, 176)
+collision_layer = 192
+collision_mask = 192
+script = ExtResource("5_y5y6t")
+orig_area = "Levels"
+orig_scene = "Level5"
+target_area = "Levels"
+target_scene = "Level5"
+exit_id = "RESET"
+target_exit_id = "default"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/RESET"]
+shape = SubResource("RectangleShape2D_33cxb")
+
+[node name="SpawnPosition" type="Node2D" parent="Exits/RESET"]
+
+[node name="default" type="Area2D" parent="Exits"]
+position = Vector2(-192, 80)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_y5y6t")
+orig_area = "Levels"
+orig_scene = "Level5"
+target_area = "Levels"
+target_scene = "Level5"
+exit_id = "default"
+target_exit_id = "default"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/default"]
+shape = SubResource("RectangleShape2D_33cxb")
+
+[node name="SpawnPosition" type="Node2D" parent="Exits/default"]
+
+[node name="Ghosts" type="Node2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door1_1" parent="Doors" instance=ExtResource("7_u5kwj")]
+position = Vector2(-96, -48)
+
+[node name="Door1_2" parent="Doors" instance=ExtResource("7_u5kwj")]
+position = Vector2(80, -80)
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="PressurePlate" parent="Objects" instance=ExtResource("8_6e55b")]
+position = Vector2(-112, 64)
+connected_object_path = "Door1_1"
+metadata/_edit_group_ = true
+
+[node name="Wire" type="Line2D" parent="Objects/PressurePlate"]
+z_index = 1
+position = Vector2(8, 0)
+points = PackedVector2Array(-6, 8, -16, 8, -16, -96, 8, -96)
+width = 1.0
+default_color = Color(0.05, 1, 1, 1)
+
+[node name="PressurePlate2" parent="Objects" instance=ExtResource("8_6e55b")]
+position = Vector2(48, 128)
+connected_object_path = "Door1_2"
+
+[node name="Wire" type="Line2D" parent="Objects/PressurePlate2"]
+z_index = 1
+position = Vector2(8, 0)
+points = PackedVector2Array(6, 8, 16, 8, 16, -192, 24, -192)
+width = 1.0
+default_color = Color(0.05, 1, 1, 1)
+
+[node name="IceBlock" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(-176, 48)
+
+[node name="IceBlock2" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(-160, 48)
+
+[node name="IceBlock3" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(96, 16)
+
+[node name="IceBlock7" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(192, 96)
+
+[node name="IceBlock8" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(192, 128)
+
+[node name="IceBlock5" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(192, 32)
+
+[node name="IceBlock6" parent="Objects" instance=ExtResource("10_oyu7v")]
+position = Vector2(192, 64)
+
+[node name="PortalReds" type="Node2D" parent="."]
+
+[node name="1" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(-192, -80)
+
+[node name="2" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(-96, -96)
+
+[node name="3" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(-80, -48)
+
+[node name="4" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(48, 80)
+
+[node name="5" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(32, -80)
+
+[node name="6" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(128, -80)
+
+[node name="7" parent="PortalReds" instance=ExtResource("9_wcemi")]
+position = Vector2(80, -64)
+
+[node name="PortalGreens" type="Node2D" parent="."]
+
+[node name="1" parent="PortalGreens" instance=ExtResource("10_28ot7")]
+position = Vector2(-144, 48)
+connected_object_paths = Array[String](["1", "2", "3", "4", "5", "6", "7"])
+
+[node name="2" parent="PortalGreens" instance=ExtResource("10_28ot7")]
+position = Vector2(-112, 48)
+connected_object_paths = Array[String](["1", "2", "3", "4", "5", "6", "7"])
+
+[node name="3" parent="PortalGreens" instance=ExtResource("10_28ot7")]
+position = Vector2(-48, 80)
+connected_object_paths = Array[String](["1", "2", "3", "4", "5", "6", "7"])
+
+[node name="Fires" type="Node2D" parent="."]
+
+[node name="Fire" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-160, -80)
+
+[node name="Fire17" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(128, 16)
+
+[node name="Fire18" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, -64)
+
+[node name="Fire4" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(64, 64)
+
+[node name="Fire5" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(64, 48)
+
+[node name="Fire6" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-48, -32)
+
+[node name="Fire7" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-32, -32)
+
+[node name="Fire8" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-16, -32)
+
+[node name="Fire9" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(0, -32)
+
+[node name="Fire10" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(16, -32)
+
+[node name="Fire11" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(32, -32)
+
+[node name="Fire12" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, 16)
+
+[node name="Fire13" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, 0)
+
+[node name="Fire14" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, -16)
+
+[node name="Fire15" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, -32)
+
+[node name="Fire16" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-32, -80)
+
+[node name="Fire21" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(16, -80)
+
+[node name="Fire22" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-208, -112)
+
+[node name="Fire23" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-192, -112)
+
+[node name="Fire24" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-176, -112)
+
+[node name="Fire25" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-160, -112)
+
+[node name="Fire26" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-144, -112)
+
+[node name="Fire27" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-128, -112)
+
+[node name="Fire28" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-112, -112)
+
+[node name="Fire29" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-96, -112)
+
+[node name="Fire30" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-80, -112)
+
+[node name="Fire31" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-64, -112)
+
+[node name="Fire32" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-48, -112)
+
+[node name="Fire33" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-32, -112)
+
+[node name="Fire34" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-16, -112)
+
+[node name="Fire35" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(0, -112)
+
+[node name="Fire36" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(16, -112)
+
+[node name="Fire37" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(32, -112)
+
+[node name="Fire38" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(48, -112)
+
+[node name="Fire39" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(64, -112)
+
+[node name="Fire40" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(80, -112)
+
+[node name="Fire41" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(96, -112)
+
+[node name="Fire42" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(112, -112)
+
+[node name="Fire43" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(128, -112)
+
+[node name="Fire44" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(144, -112)
+
+[node name="Fire45" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(160, -112)
+
+[node name="Fire46" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(176, -112)
+
+[node name="Fire47" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(192, -112)
+
+[node name="Fire48" parent="Fires" instance=ExtResource("13_w04tb")]
+position = Vector2(-8, -80)
+
+[node name="Waters" type="Node2D" parent="."]
+
+[node name="Water" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -16)
+
+[node name="Water2" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-208, -16)
+
+[node name="Water3" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-192, -16)
+
+[node name="Water4" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-176, -16)
+
+[node name="Water5" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-160, -16)
+
+[node name="Water6" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-144, -16)
+
+[node name="Water7" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-128, -16)
+
+[node name="Water8" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-112, -16)
+
+[node name="Water9" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-96, -16)
+
+[node name="Water10" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-80, -16)
+
+[node name="Water11" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-64, -16)
+
+[node name="Water12" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-48, -16)
+
+[node name="Water13" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-32, -16)
+
+[node name="Water14" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-16, -16)
+
+[node name="Water15" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(0, -16)
+
+[node name="Water16" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(16, -16)
+
+[node name="Water17" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(32, -16)
+
+[node name="Water18" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(48, -16)
+
+[node name="Water19" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(64, -16)
+
+[node name="Water20" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(80, -16)
+
+[node name="Water21" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(96, -16)
+
+[node name="Water22" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(112, -16)
+
+[node name="Water23" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(128, -16)
+
+[node name="Water24" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(144, -16)
+
+[node name="Water25" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(160, -16)
+
+[node name="Water26" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, -16)
+
+[node name="Water27" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -16)
+
+[node name="Water28" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 0)
+
+[node name="Water29" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-208, 0)
+
+[node name="Water30" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-192, 0)
+
+[node name="Water31" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-176, 0)
+
+[node name="Water32" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-160, 0)
+
+[node name="Water33" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-144, 0)
+
+[node name="Water34" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-128, 0)
+
+[node name="Water35" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-112, 0)
+
+[node name="Water36" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-96, 0)
+
+[node name="Water37" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-80, 0)
+
+[node name="Water38" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-64, 0)
+
+[node name="Water39" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-48, 0)
+
+[node name="Water40" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-32, 0)
+
+[node name="Water41" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-16, 0)
+
+[node name="Water42" parent="Waters" instance=ExtResource("14_vspwp")]
+
+[node name="Water43" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(16, 0)
+
+[node name="Water44" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(32, 0)
+
+[node name="Water45" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(48, 0)
+
+[node name="Water46" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(64, 0)
+
+[node name="Water47" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(80, 0)
+
+[node name="Water48" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(96, 0)
+
+[node name="Water49" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(112, 0)
+
+[node name="Water50" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(128, 0)
+
+[node name="Water51" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(144, 0)
+
+[node name="Water52" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(160, 0)
+
+[node name="Water53" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, 0)
+
+[node name="Water54" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 0)
+
+[node name="Water55" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, -32)
+
+[node name="Water56" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, -48)
+
+[node name="Water58" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, 16)
+
+[node name="Water59" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, 32)
+
+[node name="Water60" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -32)
+
+[node name="Water61" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -48)
+
+[node name="Water62" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -64)
+
+[node name="Water63" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -80)
+
+[node name="Water64" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -96)
+
+[node name="Water65" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -112)
+
+[node name="Water66" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -128)
+
+[node name="Water67" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -144)
+
+[node name="Water68" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -160)
+
+[node name="Water69" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, -176)
+
+[node name="Water70" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-208, -176)
+
+[node name="Water71" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-192, -176)
+
+[node name="Water72" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-176, -176)
+
+[node name="Water73" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-160, -176)
+
+[node name="Water74" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-144, -176)
+
+[node name="Water75" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-128, -176)
+
+[node name="Water76" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-112, -176)
+
+[node name="Water77" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-96, -176)
+
+[node name="Water78" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-80, -176)
+
+[node name="Water79" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-64, -176)
+
+[node name="Water80" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-48, -176)
+
+[node name="Water81" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-32, -176)
+
+[node name="Water82" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-16, -176)
+
+[node name="Water83" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(0, -176)
+
+[node name="Water84" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(16, -176)
+
+[node name="Water85" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(32, -176)
+
+[node name="Water86" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(48, -176)
+
+[node name="Water87" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(64, -176)
+
+[node name="Water88" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(80, -176)
+
+[node name="Water89" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(96, -176)
+
+[node name="Water90" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(112, -176)
+
+[node name="Water91" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(128, -176)
+
+[node name="Water92" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(144, -176)
+
+[node name="Water93" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(160, -176)
+
+[node name="Water94" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, -176)
+
+[node name="Water95" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(192, -176)
+
+[node name="Water96" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -176)
+
+[node name="Water97" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -160)
+
+[node name="Water98" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -144)
+
+[node name="Water99" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -128)
+
+[node name="Water100" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -112)
+
+[node name="Water101" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -96)
+
+[node name="Water102" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -80)
+
+[node name="Water103" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -64)
+
+[node name="Water104" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -48)
+
+[node name="Water105" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, -32)
+
+[node name="Water106" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 16)
+
+[node name="Water107" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 32)
+
+[node name="Water108" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 48)
+
+[node name="Water109" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 64)
+
+[node name="Water110" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 80)
+
+[node name="Water111" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 96)
+
+[node name="Water112" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 112)
+
+[node name="Water113" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 128)
+
+[node name="Water114" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 144)
+
+[node name="Water115" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(208, 160)
+
+[node name="Water116" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(192, 160)
+
+[node name="Water117" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(176, 160)
+
+[node name="Water118" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(160, 160)
+
+[node name="Water119" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(144, 160)
+
+[node name="Water120" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(128, 160)
+
+[node name="Water121" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(112, 160)
+
+[node name="Water122" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(96, 160)
+
+[node name="Water123" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(80, 160)
+
+[node name="Water124" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(64, 160)
+
+[node name="Water125" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(48, 160)
+
+[node name="Water126" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(32, 160)
+
+[node name="Water127" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(16, 160)
+
+[node name="Water128" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(0, 160)
+
+[node name="Water129" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-16, 160)
+
+[node name="Water130" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-32, 160)
+
+[node name="Water131" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-48, 160)
+
+[node name="Water132" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-64, 160)
+
+[node name="Water133" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-80, 160)
+
+[node name="Water134" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-96, 160)
+
+[node name="Water135" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-112, 160)
+
+[node name="Water136" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-128, 160)
+
+[node name="Water137" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-144, 160)
+
+[node name="Water138" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-160, 160)
+
+[node name="Water139" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-176, 160)
+
+[node name="Water140" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-192, 160)
+
+[node name="Water141" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-208, 160)
+
+[node name="Water142" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 160)
+
+[node name="Water143" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 144)
+
+[node name="Water144" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 128)
+
+[node name="Water145" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 112)
+
+[node name="Water146" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 96)
+
+[node name="Water147" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 80)
+
+[node name="Water148" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 64)
+
+[node name="Water149" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 48)
+
+[node name="Water150" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 32)
+
+[node name="Water151" parent="Waters" instance=ExtResource("14_vspwp")]
+position = Vector2(-224, 16)
+
+[connection signal="area_entered" from="Exits/Exit" to="Exits/Exit" method="_on_area_entered"]
+[connection signal="area_entered" from="Exits/RESET" to="Exits/RESET" method="_on_area_entered"]
+[connection signal="area_entered" from="Exits/default" to="Exits/default" method="_on_area_entered"]
