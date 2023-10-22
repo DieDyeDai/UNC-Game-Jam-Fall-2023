@@ -115,6 +115,7 @@ func create_ghost(location: Vector2, direction: Vector2):
 	ghost_stored_direction = direction
 
 func on_ghost_ready(body: Object):
+	move_child(body, 0)
 	body.stored_direction = ghost_stored_direction
 	body.position = ghost_stored_location
 	body.animationPlayer.play(body.directions[ghost_stored_direction])
@@ -150,9 +151,14 @@ func on_ghost_ready(body: Object):
 
 func process_interactions():
 	await get_tree().create_timer(0.001).timeout
-	for i in get_node("Ghosts").get_children():
-		emit_signal("process_interactions_signal", i)
-		#await get_tree().create_timer(0.001).timeout
+	#for i in get_node("Ghosts").get_children():
+	#	emit_signal("process_interactions_signal", i)
+	#	await get_tree().create_timer(0.001).timeout
+	var ghost_parent = get_node("Ghosts")
+	for i in range(len(ghost_parent.get_children()), -1, -1):
+		emit_signal("process_interactions_signal", ghost_parent.get_child(i))
+		await get_tree().create_timer(0.001).timeout
+	
 	await get_tree().create_timer(0.001).timeout
 	for i in get_node("Objects").get_children():
 		emit_signal("process_interactions_signal", i)

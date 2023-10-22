@@ -48,8 +48,10 @@ Collision Layers:
 var tile_size = 16
 var anim_speed = 0.08
 
-#var saved_level = "res://Maps/Levels/Level1.tscn"
-var saved_level = "res://Maps/Levels/Level2.tscn"
+var saved_level = "res://Maps/Levels/Level1.tscn"
+#var saved_level = "res://Maps/Levels/Level2.tscn"
+#var saved_level = "res://Maps/Levels/Level3.tscn"
+#var saved_level = "res://Maps/Levels/Level4.tscn"
 #var saved_level = "res://Maps/Test/TestMap1.tscn"
 var exit_id
 var target_exit_id
@@ -69,6 +71,8 @@ var during_scene_fadein : bool = false
 func _ready():
 	#saved_level = "res://Maps/Test/TestMap1.tscn"
 	saved_level = "res://Maps/Levels/Level1.tscn"
+	#saved_level = "res://Maps/Levels/Level3.tscn"
+	#saved_level = "res://Maps/Levels/Level4.tscn"
 	pass # Replace with function body.
 
 
