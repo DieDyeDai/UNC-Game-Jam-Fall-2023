@@ -26,7 +26,7 @@ var pusher : Object
 @onready var animationPlayer = $AnimationPlayer
 @onready var collisionShape2D = $CollisionShape2D
 @onready var sprite2D = $Sprite2D
-@export var id = "IceBlock"
+#@export var id = "IceBlock"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,25 +42,25 @@ func _process(delta):
 
 func process_interactions(body):
 	if self == body and already_processed != 0:
-		print(str(stored_direction))
-		print(id + " iceblock processing")
-		print(id + " iceblock_stored_direction: " + str(stored_direction))
+		#print(str(stored_direction))
+		#print(id + " iceblock processing")
+		#print(id + " iceblock_stored_direction: " + str(stored_direction))
 		if just_pushed:
 			just_pushed = false
-			print(id + " not sliding, just pushed")
+			#print(id + " not sliding, just pushed")
 			pass
 		else:
 			# just_pushed = false
 			if check_movement(stored_direction):
-				print(id + " sliding in " + str(stored_direction))
+				#print(id + " sliding in " + str(stored_direction))
 				move(stored_direction)
 				#already_processed = 0
 			elif already_processed == 1:
-				print(id + " first pass failed")
-				print(id + " stored dir is: " + str(stored_direction))
+				#print(id + " first pass failed")
+				#print(id + " stored dir is: " + str(stored_direction))
 				already_processed = 2
 			else:
-				print(id + " stopped sliding")
+				#print(id + " stopped sliding")
 				stored_direction = Vector2.ZERO
 	
 	animationPlayer.play(directions[stored_direction])
@@ -72,12 +72,12 @@ func process_interactions(body):
 func on_check_push(pusher, body, direction):
 	if self == body:
 		self.pusher = pusher
-		print("checking push direction: " + str(check_movement(direction)))
+		#print("checking push direction: " + str(check_movement(direction)))
 		emit_signal("checked_push_direction", pusher, body, direction, check_movement(direction))
 
 func on_push_confirmed(body, direction):
 	if self == body:
-		print("push confirmed, " + str(direction))
+		#print("push confirmed, " + str(direction))
 		move(direction)
 		stored_direction = direction
 		#just_pushed = true
@@ -86,7 +86,7 @@ func on_push_confirmed(body, direction):
 func move(dir):
 	already_processed = 0
 	#just_pushed = false
-	print (id + " iceblock moving in " + str(dir))
+	#print (id + " iceblock moving in " + str(dir))
 	#var tween = get_tree().create_tween()
 	#var tweenCollision = get_tree().create_tween()
 	#tween.tween_property(self, "position", position + dir, Flags.anim_speed).set_trans(Tween.TRANS_LINEAR)

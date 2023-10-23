@@ -33,7 +33,7 @@ func process_interactions(body):
 
 func on_done_processing():
 	if get_overlapping_bodies() or get_overlapping_areas(): # button is pressed
-		print("pressed")
+		#print("pressed")
 		if TurnOnWhenPressed:
 			button_pressed = true
 			self.emit_signal("set_state", true)

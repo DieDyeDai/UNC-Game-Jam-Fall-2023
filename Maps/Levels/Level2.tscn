@@ -109,11 +109,9 @@ position = Vector2(-112, 0)
 
 [node name="IceBlock2" parent="Objects" instance=ExtResource("9_lgslb")]
 position = Vector2(16, 64)
-id = "IceBlock2"
 
 [node name="IceBlock3" parent="Objects" instance=ExtResource("9_lgslb")]
 position = Vector2(16, 32)
-id = "IceBlock2"
 
 [node name="Button" parent="Objects" instance=ExtResource("10_8u5mw")]
 position = Vector2(-64, -64)

@@ -23,12 +23,12 @@ func _process(delta):
 func on_check_push(pusher, body, direction):
 	if self == body:
 		self.pusher = pusher
-		print("checking push direction: " + str(check_movement(direction)))
+		#print("checking push direction: " + str(check_movement(direction)))
 		emit_signal("checked_push_direction", pusher, body, direction, check_movement(direction))
 
 func on_push_confirmed(body, direction):
 	if self == body:
-		print("push confirmed, " + str(direction))
+		#print("push confirmed, " + str(direction))
 		move(direction)
 
 func move(dir):
@@ -44,7 +44,7 @@ func move(dir):
 	tween.tween_property(sprite2D, "position", Vector2(8,8), Flags.anim_speed).from(Vector2(8,8) + dir * -1)
 	
 	# collisionShape2D.position = Vector2(8, 8)
-	print("pushblock global position after move:" + str(collisionShape2D.global_position))
+	#print("pushblock global position after move:" + str(collisionShape2D.global_position))
 	
 func check_movement(direction: Vector2) -> bool:
 	rayCast2D.target_position = direction

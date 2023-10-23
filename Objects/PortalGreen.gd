@@ -25,4 +25,4 @@ func _process(delta):
 func on_entered_portalgreen(body: Object, direction: Vector2):
 	if self == body:
 		emit_signal("send_to_portalred", direction)
-		print("send_to_portalred")
+		#print("send_to_portalred")

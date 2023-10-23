@@ -116,11 +116,9 @@ stored_direction = Vector2(16, 0)
 [node name="IceBlock2" parent="Objects" instance=ExtResource("5_5rylb")]
 position = Vector2(32, -48)
 stored_direction = Vector2(-16, 0)
-id = "IceBlock2"
 
 [node name="IceBlock3" parent="Objects" instance=ExtResource("5_5rylb")]
 position = Vector2(48, -48)
-id = "IceBlock2"
 
 [node name="Button" parent="Objects" instance=ExtResource("7_f6uuy")]
 position = Vector2(-64, -32)

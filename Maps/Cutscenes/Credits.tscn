@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv8klrfwi56yx"]
+[gd_scene load_steps=7 format=3 uid="uid://bv8klrfwi56yx"]
 
 [ext_resource type="Script" path="res://Maps/Cutscenes/Credits.gd" id="1_6du5b"]
 [ext_resource type="FontFile" uid="uid://do1ywciqk62tg" path="res://assets/pixel_coleco.ttf" id="2_td6wl"]
+[ext_resource type="Texture2D" uid="uid://dbywls5apdgbo" path="res://assets/outro1.png" id="3_gat4c"]
+[ext_resource type="Texture2D" uid="uid://ddbmd77cmcu65" path="res://assets/outro2.png" id="4_3u343"]
+[ext_resource type="Texture2D" uid="uid://cwy36bon5mk67" path="res://assets/outro3.png" id="5_cq8r1"]
+[ext_resource type="Texture2D" uid="uid://1t0i8sh7fpqh" path="res://assets/spaceprompt.png" id="6_r5312"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -9,14 +13,53 @@ anchors_preset = 0
 script = ExtResource("1_6du5b")
 zoom = 1.0
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -408.0
+offset_top = -288.0
+offset_right = 456.0
+offset_bottom = 296.0
+color = Color(0, 0, 0, 1)
+
+[node name="Outro1" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -272.0
+offset_right = 360.0
+offset_bottom = 268.0
+texture = ExtResource("3_gat4c")
+
+[node name="Outro2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -272.0
+offset_right = 360.0
+offset_bottom = 268.0
+texture = ExtResource("4_3u343")
+
+[node name="Outro3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -360.0
+offset_top = -272.0
+offset_right = 360.0
+offset_bottom = 268.0
+texture = ExtResource("5_cq8r1")
+
 [node name="TextEdit" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -256.0
-offset_top = -64.0
 offset_right = 256.0
-offset_bottom = 96.0
+offset_bottom = 160.0
 theme_override_fonts/normal_font = ExtResource("2_td6wl")
 bbcode_enabled = true
 text = "[center]Thank you for playing!
 Concept, Design, Programming by Die_Dai
 "
+
+[node name="SpacePrompt" type="Sprite2D" parent="."]
+position = Vector2(336, 252)
+scale = Vector2(2, 2)
+texture = ExtResource("6_r5312")

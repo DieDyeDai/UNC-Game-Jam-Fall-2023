@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Flags="*res://Management/Flags.gd"
 SignalManager="*res://Management/SignalManager.gd"
+BackgroundMusic="*res://Management/BackgroundMusic.tscn"
 
 [display]
 

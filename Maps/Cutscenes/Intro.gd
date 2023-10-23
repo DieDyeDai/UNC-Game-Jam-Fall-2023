@@ -37,12 +37,12 @@ func play_intro():
 	
 	spacePrompt.set_visible(false)
 	
-	print("next")
+	#print("next")
 	
 	tween = get_tree().create_tween()
 	var tween2 = get_tree().create_tween()
 	tween.tween_property(intro1, "modulate:a", 0, 0.2)
-	print("next_again")
+	#print("next_again")
 	tween2.tween_property(intro2, "modulate:a", 1, 0.2)
 	
 	await tween2.finished
@@ -52,7 +52,7 @@ func play_intro():
 	await next_cutscene
 	
 	spacePrompt.set_visible(false)
-	print("next")
+	#print("next")
 	
 	tween = get_tree().create_tween()
 	tween.tween_property(intro2, "modulate:a", 0, 0.2)
@@ -127,7 +127,7 @@ func play_intro():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("next_cutscene"):
-		print("next cutscene")
+		#print("next cutscene")
 		next_cutscene.emit()
 
 func cleanup(): #called instead of queue_free()
